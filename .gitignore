@@ -1,8 +1,10 @@
 node_modules/
 .next/
+tsconfig.tsbuildinfo
 out/
 dist/
 coverage/
+artifacts/
 .env
 .env.*
 !.env.example
