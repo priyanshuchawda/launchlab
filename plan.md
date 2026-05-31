@@ -73,7 +73,7 @@ Sub-issues:
 9. App navigation, command menu, theme/settings panel
 10. Local persistence, mock data layer, typed stores
 11. Accessibility, keyboard states, responsive polish, reduced motion
-12. Deployment notes and Cloudflare Pages prep
+12. Deployment readiness notes, no hosting setup
 13. Final QA: Lighthouse, Playwright smoke tests, README, submission copy
 
 ## Expected Architecture
@@ -117,6 +117,6 @@ src/styles/
 - GitHub CI/CD workflows.
 - PostHog integration.
 - Sentry.
-- Cloudflare Pages deployment.
+- Hosting provider setup.
 - Custom domain setup.
 - Supabase or persistent backend.
