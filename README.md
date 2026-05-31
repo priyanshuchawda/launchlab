@@ -1,5 +1,7 @@
 # LaunchLab
 
+**Live Demo:** [https://launchlab-growth.vercel.app](https://launchlab-growth.vercel.app)
+
 LaunchLab is a frontend SaaS demo for startup founders. A founder enters a
 growth goal, then the product opens a clean experiment builder with a visible
 flow from active goal to test queue, variant preview, result signal, analytics,
