@@ -76,6 +76,7 @@ export function LandingVariantPreview({
     <section
       aria-labelledby="landing-variant-preview-title"
       className="grid gap-4 rounded-lg border border-violet-300/20 bg-violet-300/[0.035] p-4 sm:p-5"
+      id="variants"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>

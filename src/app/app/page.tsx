@@ -1,6 +1,7 @@
 import Link from "next/link";
-
 import { AnalyticsDashboard } from "@/components/analytics/analytics-dashboard";
+import { AppNavigation } from "@/components/app/app-navigation";
+import { AppSettingsPanel } from "@/components/app/app-settings-panel";
 import { ExperimentGenerator } from "@/components/experiments/experiment-generator";
 import { Button } from "@/components/ui/button";
 
@@ -22,6 +23,7 @@ export default function AppPage() {
             A focused product surface for turning rough founder goals into
             measurable tests with clear effort, impact, and success signals.
           </p>
+          <AppNavigation />
           <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
             {[
               ["6", "experiments"],
@@ -44,6 +46,7 @@ export default function AppPage() {
         <div className="grid gap-8">
           <ExperimentGenerator />
           <AnalyticsDashboard />
+          <AppSettingsPanel />
         </div>
       </section>
     </main>
