@@ -20,6 +20,9 @@ test("landing routes into the app and keeps the viewport stable", async ({
       name: /launch experiments faster than competitors can write specs/i,
     }),
   ).toBeVisible();
+  await expect(page.getByLabel(/launch command center/i)).toBeVisible();
+  await expect(page.getByText(/before launchlab/i)).toBeVisible();
+  await expect(page.getByText(/after launchlab/i)).toBeVisible();
   await expectNoHorizontalOverflow(page);
   await page.waitForLoadState("networkidle");
 
@@ -49,18 +52,24 @@ test("app generates experiments, ships one, and opens a landing variant", async 
   await page.getByRole("button", { name: /generate experiments/i }).click();
 
   await expect(page.getByText(/6 ready/i)).toBeVisible();
+  const firstCard = page.getByTestId("experiment-card").first();
+
   await page
     .getByRole("button", { name: /mark signup proof strip as shipped/i })
     .click();
   await expect(
     page.getByText(/signup proof strip marked as shipped/i),
   ).toBeVisible();
+  await expect(firstCard).toHaveAttribute("data-status", "shipped");
+  await expect(firstCard.getByText(/shipped to ship log/i)).toBeVisible();
 
   await page
     .getByRole("button", {
       name: /turn signup proof strip into landing page/i,
     })
     .click();
+  await expect(firstCard).toHaveAttribute("data-selected", "true");
+  await expect(page.getByText(/selected insight/i)).toBeVisible();
   await expect(
     page.getByRole("heading", { name: /a\/b landing preview/i }),
   ).toBeVisible();
