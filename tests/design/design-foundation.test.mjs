@@ -29,6 +29,8 @@ describe("design foundation CSS", () => {
     assert.match(surfaces, /\.surface-spotlight/);
     assert.match(surfaces, /\.surface-lane/);
     assert.match(surfaces, /\.metric-beacon/);
+    assert.match(surfaces, /\.experiment-shell/);
+    assert.match(surfaces, /\.selected-insight/);
     assert.doesNotMatch(surfaces, /#generator|#analytics|#settings/);
   });
 });
