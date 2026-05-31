@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AnalyticsDashboard } from "@/components/analytics/analytics-dashboard";
 import { ExperimentGenerator } from "@/components/experiments/experiment-generator";
 import { Button } from "@/components/ui/button";
 
@@ -40,7 +41,10 @@ export default function AppPage() {
           </div>
         </div>
 
-        <ExperimentGenerator />
+        <div className="grid gap-8">
+          <ExperimentGenerator />
+          <AnalyticsDashboard />
+        </div>
       </section>
     </main>
   );
