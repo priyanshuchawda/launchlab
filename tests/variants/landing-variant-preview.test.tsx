@@ -1,18 +1,20 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import AppPage from "@/app/app/page";
+import { ExperimentGenerator } from "@/components/experiments/experiment-generator";
 
 async function openLandingPreview() {
-  const user = userEvent.setup();
-
-  render(<AppPage />);
-  await user.type(
-    screen.getByLabelText(/startup growth goal/i),
-    "Increase signup conversion for my AI notes app",
-  );
-  await user.click(
+  render(<ExperimentGenerator />);
+  fireEvent.change(screen.getByLabelText(/startup growth goal/i), {
+    target: { value: "Increase signup conversion for my AI notes app" },
+  });
+  fireEvent.click(
     screen.getByRole("button", { name: /generate experiments/i }),
   );
 
@@ -21,18 +23,16 @@ async function openLandingPreview() {
   });
 
   const firstCard = within(screen.getAllByTestId("experiment-card")[0]);
-  await user.click(
+  fireEvent.click(
     firstCard.getByRole("button", {
       name: /turn signup proof strip into landing page/i,
     }),
   );
-
-  return user;
 }
 
 describe("Landing variant preview", () => {
   it("compares two generated landing page variants for the selected experiment", async () => {
-    const user = await openLandingPreview();
+    await openLandingPreview();
 
     expect(
       screen.getByRole("heading", { name: /a\/b landing preview/i }),
@@ -41,9 +41,14 @@ describe("Landing variant preview", () => {
     expect(screen.getByText(/recommended/i)).toBeInTheDocument();
     expect(screen.getByRole("tab", { name: /variant a/i })).toBeInTheDocument();
 
-    await user.click(screen.getByRole("tab", { name: /variant b/i }));
+    const variantBTab = screen.getByRole("tab", { name: /variant b/i });
+    fireEvent.pointerDown(variantBTab, { button: 0, ctrlKey: false });
+    fireEvent.mouseDown(variantBTab, { button: 0, ctrlKey: false });
+    fireEvent.pointerUp(variantBTab, { button: 0, ctrlKey: false });
+    fireEvent.mouseUp(variantBTab, { button: 0, ctrlKey: false });
+    fireEvent.click(variantBTab);
 
-    expect(screen.getByText(/bold gen-z/i)).toBeInTheDocument();
+    expect(await screen.findByText(/bold gen-z/i)).toBeInTheDocument();
     expect(screen.getByText(/pricing angle/i)).toBeInTheDocument();
   });
 });
