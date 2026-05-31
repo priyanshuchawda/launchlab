@@ -1,0 +1,32 @@
+@theme {
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: #020617;
+  --color-surface: #0f172a;
+  --color-panel: #111827;
+  --color-border-soft: rgb(255 255 255 / 0.1);
+  --color-accent-violet: #8b5cf6;
+  --color-accent-cyan: #22d3ee;
+  --color-growth: #a3e635;
+  --color-copy: #f8fafc;
+  --color-muted-copy: #94a3b8;
+}
+
+:root {
+  --launch-bg: #020617;
+  --launch-panel: rgb(15 23 42 / 0.72);
+  --launch-panel-strong: rgb(2 6 23 / 0.88);
+  --launch-line: rgb(255 255 255 / 0.1);
+  --launch-line-strong: rgb(34 211 238 / 0.3);
+  --launch-cyan: #22d3ee;
+  --launch-lime: #a3e635;
+  --launch-violet: #8b5cf6;
+  --launch-amber: #fbbf24;
+  --launch-copy: #f8fafc;
+  --launch-muted: #94a3b8;
+  --launch-shadow-cyan: 0 24px 80px rgb(8 145 178 / 0.18);
+  --launch-shadow-lime: 0 24px 80px rgb(132 204 22 / 0.12);
+  --launch-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
