@@ -10,28 +10,28 @@ describe("LaunchLab landing page", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /launch experiments faster than competitors can write specs/i,
+        name: /turn one startup goal into a testable landing-page experiment/i,
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: /try live demo/i }),
+      screen.getByRole("link", { name: /open experiment builder/i }),
     ).toHaveAttribute("href", "/app");
     expect(
-      screen.getByRole("link", { name: /view shipped experiments/i }),
+      screen.getByRole("link", { name: /see build log/i }),
     ).toHaveAttribute("href", "#ship-log");
     expect(
-      screen.getByText(/shipped 12 experiments this week/i),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/goal captured/i)).toBeInTheDocument();
-    expect(screen.getByText(/experiment pipeline/i)).toBeInTheDocument();
-    expect(screen.getByText(/before launchlab/i)).toBeInTheDocument();
-    expect(screen.getByText(/after launchlab/i)).toBeInTheDocument();
-    expect(screen.getByText(/launch command center/i)).toBeInTheDocument();
+      screen.getAllByText(/experiment builder preview/i).length,
+    ).toBeGreaterThan(0);
+    expect(screen.getByText(/active goal/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/test queue/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/variant preview/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/result signal/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/from idea to next test/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: /experiment generator/i }),
+      screen.getByRole("heading", { name: /a cleaner experiment loop/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: /analytics dashboard/i }),
+      screen.getByRole("heading", { name: /measure/i }),
     ).toBeInTheDocument();
   });
 });

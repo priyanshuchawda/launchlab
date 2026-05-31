@@ -27,7 +27,7 @@ export const shipLogEntries = [
     signal: "Metrics story",
     summary:
       "Added analytics cards and charts for conversion, activation, signups, impact, and traffic.",
-    title: "Added analytics dashboard",
+    title: "Added analytics signals",
   },
   {
     day: 5,

@@ -2,14 +2,14 @@
 
 ## Product
 
-LaunchLab is a frontend SaaS demo for startup founders. A founder enters a growth goal such as "I want to increase signup conversion for my AI notes app", then the product generates experiment ideas, A/B landing variants, analytics, shipped experiment history, and next action recommendations.
+LaunchLab is a frontend SaaS demo for startup founders. A founder enters a growth goal such as "I want to increase signup conversion for my AI notes app", then the product opens a guided flow: active goal, ranked test queue, landing-page variant, result signal, analytics, shipped experiment history, and next action recommendations.
 
 The project should feel like a real startup product, not a portfolio page.
 
 ## Inputs Used
 
 - `info.md` project brief.
-- UI/UX Pro Max design-system search for a premium AI SaaS dashboard.
+- UI/UX Pro Max design-system search for a premium AI SaaS experiment builder.
 - Next.js official docs for App Router, TypeScript, Biome, static export, and testing guidance.
 - Biome docs for `biome ci`, `biome check --write`, formatting, and linting.
 - Tailwind CSS v4 docs for CSS-first theme tokens.
@@ -19,7 +19,7 @@ The project should feel like a real startup product, not a portfolio page.
 ## Design Direction
 
 - Dark premium AI SaaS interface.
-- Product pattern: before/after transformation and measurable growth outcomes.
+- Product pattern: clear goal-to-test-to-result flow and measurable growth outcomes.
 - Typography: Space Grotesk for headings, DM Sans or Geist for body, Geist Mono for metrics.
 - Palette: near-black background, dark card surfaces, subtle borders, cyan/violet accents, green success metrics.
 - Interactions: purposeful loading states, hover feedback, keyboard-accessible controls, command menu, reduced-motion support.
@@ -58,17 +58,17 @@ GitHub Actions and deployment automation are intentionally deferred.
 
 Parent issue:
 
-- Epic: LaunchLab v1 - AI experiment dashboard
+- Epic: LaunchLab v1 - AI experiment builder
 
 Sub-issues:
 
 1. Repo foundation, Next.js scaffold, Biome, strict TypeScript
 2. Design system: tokens, typography, theme, shadcn base
-3. Landing page shell: hero, dashboard preview, bento features, CTA
+3. Landing page shell: hero, builder preview, flow features, CTA
 4. Interactive experiment generator flow
 5. Experiment cards: hypothesis, effort, impact, metric, ship action
 6. A/B landing variant preview
-7. Analytics dashboard with realistic mock metrics and charts
+7. Analytics signals with realistic mock metrics and charts
 8. Ship log and case study page
 9. App navigation, command menu, theme/settings panel
 10. Local persistence, mock data layer, typed stores
@@ -109,7 +109,7 @@ src/styles/
 - Add tests where behavior matters.
 - Use Server Components by default and Client Components only for browser state, effects, and event handlers.
 - Use accessible semantic HTML and visible focus states.
-- Reserve stable dimensions for dashboard cards, charts, boards, controls, and loading states.
+- Reserve stable dimensions for cards, charts, boards, controls, and loading states.
 - Keep mobile layouts polished at 375px and up.
 
 ## Deferred

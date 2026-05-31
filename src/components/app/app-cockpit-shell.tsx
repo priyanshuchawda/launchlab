@@ -18,16 +18,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const cockpitStats = [
-  { label: "Ready experiments", value: "6" },
-  { label: "Top impact", value: "10" },
-  { label: "Decision loop", value: "1" },
+  { label: "Active goal", value: "1" },
+  { label: "Queued tests", value: "6" },
+  { label: "Next result", value: "+18%" },
 ] as const;
 
 const commandRailItems = [
-  { href: "#generator", icon: Sparkles, label: "Generator" },
-  { href: "#board", icon: ListChecks, label: "Experiment pipeline" },
-  { href: "#analytics", icon: Gauge, label: "Analytics" },
-  { href: "#settings", icon: Radar, label: "Controls" },
+  { href: "#generator", icon: Sparkles, label: "Goal" },
+  { href: "#board", icon: ListChecks, label: "Test queue" },
+  { href: "#analytics", icon: Gauge, label: "Metrics" },
+  { href: "#settings", icon: Radar, label: "Settings" },
 ] as const;
 
 function CockpitHeader() {
@@ -40,11 +40,11 @@ function CockpitHeader() {
       <div className="motion-reveal">
         <Badge variant="cyan">LaunchLab workspace</Badge>
         <h1 className="mt-4 max-w-3xl text-pretty font-display text-4xl font-semibold tracking-normal text-slate-50 sm:text-5xl">
-          Growth cockpit
+          Experiment builder
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
-          Turn a rough founder goal into a sequenced experiment pipeline,
-          landing-page variants, and measurable product signals.
+          Generate a test queue, choose a variant, and keep the next action
+          visible from goal to test to result.
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[25rem]">
@@ -76,14 +76,14 @@ function CockpitCommandRail() {
 
       <div>
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-200">
-          Cockpit command rail
+          Builder flow rail
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-400">
-          Move through the workflow without losing context.
+          Goal to test to result, without losing context.
         </p>
       </div>
 
-      <nav aria-label="Cockpit command rail" className="grid gap-2">
+      <nav aria-label="Builder flow rail" className="grid gap-2">
         {commandRailItems.map(({ href, icon: Icon, label }) => (
           <a
             className="group flex min-h-11 items-center justify-between rounded-lg border border-white/10 bg-white/[0.035] px-3 text-sm font-semibold text-slate-200 transition-colors duration-200 hover:border-cyan-300/45 hover:bg-cyan-300/10 hover:text-slate-50 focus-visible:ring-2 focus-visible:ring-cyan-300"
