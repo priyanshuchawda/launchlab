@@ -11,6 +11,7 @@ import {
   WorkflowLane,
 } from "@/components/design/premium-surface";
 import { ExperimentCard } from "@/components/experiments/experiment-card";
+import { SelectedExperimentInsight } from "@/components/experiments/selected-experiment-insight";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -163,10 +164,16 @@ export function ExperimentGenerator() {
           </output>
         ) : null}
         {selectedExperiment ? (
-          <LandingVariantPreview
-            experiment={selectedExperiment}
-            variants={generateLandingVariants(selectedExperiment)}
-          />
+          <>
+            <SelectedExperimentInsight
+              experiment={selectedExperiment}
+              isShipped={shippedExperimentIds.includes(selectedExperiment.id)}
+            />
+            <LandingVariantPreview
+              experiment={selectedExperiment}
+              variants={generateLandingVariants(selectedExperiment)}
+            />
+          </>
         ) : null}
 
         {experiments.length > 0 ? (
@@ -184,6 +191,7 @@ export function ExperimentGenerator() {
                     key={experiment.id}
                     onCreateVariant={handleCreateVariant}
                     onShip={handleShip}
+                    selected={experiment.id === selectedExperimentId}
                     status={
                       shippedExperimentIds.includes(experiment.id)
                         ? "shipped"

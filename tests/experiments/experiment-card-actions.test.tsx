@@ -42,8 +42,21 @@ describe("Experiment card actions", () => {
     expect(
       card.getByRole("button", { name: /mark signup proof strip as shipped/i }),
     ).toHaveTextContent(/shipped/i);
+    expect(firstCard).toHaveAttribute("data-status", "shipped");
+    expect(card.getByText(/shipped to ship log/i)).toBeInTheDocument();
     expect(screen.getByRole("status")).toHaveTextContent(
       /signup proof strip marked as shipped/i,
     );
+
+    fireEvent.click(
+      card.getByRole("button", {
+        name: /turn signup proof strip into landing page/i,
+      }),
+    );
+
+    expect(firstCard).toHaveAttribute("data-selected", "true");
+    expect(card.getByText(/selected for landing preview/i)).toBeInTheDocument();
+    expect(screen.getByText(/selected insight/i)).toBeInTheDocument();
+    expect(screen.getByText(/impact 8\/10/i)).toBeInTheDocument();
   });
 });

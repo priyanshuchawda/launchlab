@@ -82,3 +82,89 @@
   font-weight: 700;
   line-height: 1.85rem;
 }
+
+.experiment-shell {
+  isolation: isolate;
+}
+
+.experiment-shell::after {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  z-index: -1;
+  height: 2.75rem;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(139 92 246 / 0.18),
+    transparent
+  );
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity 220ms var(--launch-ease);
+}
+
+.experiment-shell[data-selected="true"] {
+  border-color: rgb(139 92 246 / 0.48);
+  box-shadow:
+    inset 0 0 0 1px rgb(139 92 246 / 0.12),
+    0 22px 70px rgb(139 92 246 / 0.18);
+}
+
+.experiment-shell[data-selected="true"]::after,
+.experiment-shell[data-status="shipped"]::after {
+  opacity: 1;
+}
+
+.experiment-shell[data-status="shipped"] {
+  background:
+    linear-gradient(145deg, rgb(163 230 53 / 0.08), transparent 46%),
+    rgb(2 6 23 / 0.72);
+}
+
+.metric-counter__track {
+  display: block;
+  inline-size: 100%;
+  block-size: 0.18rem;
+  margin-block-start: 0.45rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.metric-counter__fill {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--launch-cyan), var(--launch-lime));
+}
+
+.selected-insight {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgb(139 92 246 / 0.28);
+  border-radius: 0.5rem;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgb(139 92 246 / 0.18),
+      transparent 16rem
+    ), rgb(15 23 42 / 0.62);
+  padding: 1rem;
+  box-shadow: 0 20px 70px rgb(0 0 0 / 0.28);
+}
+
+.selected-insight__metric {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.04);
+  padding-inline: 0.75rem;
+  color: rgb(226 232 240);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
