@@ -17,7 +17,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { LandingVariantPreview } from "@/components/variants/landing-variant-preview";
 import { generateExperiments } from "@/lib/experiments/generate-experiments";
+import { generateLandingVariants } from "@/lib/variants/generate-landing-variants";
 import type { Experiment } from "@/types/experiment";
 
 const experimentFormSchema = z.object({
@@ -36,6 +38,8 @@ export function ExperimentGenerator() {
     ReadonlySet<string>
   >(new Set());
   const [feedback, setFeedback] = useState("");
+  const [selectedExperiment, setSelectedExperiment] =
+    useState<Experiment | null>(null);
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -51,9 +55,11 @@ export function ExperimentGenerator() {
     setExperiments(generateExperiments(goal));
     setShippedExperimentIds(new Set());
     setFeedback("");
+    setSelectedExperiment(null);
   };
 
   const handleCreateVariant = (experiment: Experiment) => {
+    setSelectedExperiment(experiment);
     setFeedback(`${experiment.title} queued for landing page variant.`);
   };
 
@@ -138,6 +144,12 @@ export function ExperimentGenerator() {
           <output className="rounded-lg border border-lime-300/20 bg-lime-300/10 px-4 py-3 text-sm font-medium text-lime-100">
             {feedback}
           </output>
+        ) : null}
+        {selectedExperiment ? (
+          <LandingVariantPreview
+            experiment={selectedExperiment}
+            variants={generateLandingVariants(selectedExperiment)}
+          />
         ) : null}
 
         {experiments.length > 0 ? (
