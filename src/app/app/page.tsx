@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function AppPage() {
   return (
-    <main className="min-h-screen px-5 py-8 sm:px-8 lg:py-10">
+    <main className="min-h-screen px-5 py-8 sm:px-8 lg:py-10" id="main-content">
       <section className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
         <div className="lg:sticky lg:top-8">
           <Button asChild variant="outline">

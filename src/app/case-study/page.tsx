@@ -7,7 +7,7 @@ import { shipLogEntries } from "@/data/ship-log";
 
 export default function CaseStudyPage() {
   return (
-    <main className="min-h-screen px-5 py-8 sm:px-8 lg:py-10">
+    <main className="min-h-screen px-5 py-8 sm:px-8 lg:py-10" id="main-content">
       <section className="mx-auto max-w-6xl">
         <Button asChild variant="outline">
           <Link href="/">Back to landing</Link>

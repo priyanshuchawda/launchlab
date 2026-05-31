@@ -5,7 +5,7 @@ import { ShipLogPreview } from "@/components/marketing/ship-log-preview";
 
 export default function Home() {
   return (
-    <main className="min-h-screen px-5 py-10 sm:px-8">
+    <main className="min-h-screen px-5 py-10 sm:px-8" id="main-content">
       <HeroSection />
       <FeatureGrid />
       <ShipLogPreview />
