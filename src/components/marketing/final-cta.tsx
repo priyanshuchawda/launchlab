@@ -16,12 +16,17 @@ export function FinalCta() {
             next actions without requiring login.
           </p>
         </div>
-        <Button asChild size="lg">
-          <Link href="/app">
-            Open demo
-            <ArrowRight aria-hidden="true" />
-          </Link>
-        </Button>
+        <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
+          <Button asChild size="lg" variant="outline">
+            <Link href="/case-study">Read case study</Link>
+          </Button>
+          <Button asChild size="lg">
+            <Link href="/app">
+              Open demo
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
       </div>
     </section>
   );

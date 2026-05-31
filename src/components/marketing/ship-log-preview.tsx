@@ -1,10 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-
-const shipLog = [
-  "Built core experiment generator",
-  "Added A/B preview",
-  "Improved mobile responsiveness",
-];
+import { shipLogEntries } from "@/data/ship-log";
 
 export function ShipLogPreview() {
   return (
@@ -17,14 +12,22 @@ export function ShipLogPreview() {
           </h2>
         </div>
       </div>
-      <div className="grid gap-3 md:grid-cols-3">
-        {shipLog.map((item, index) => (
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-5">
+        {shipLogEntries.map((entry) => (
           <div
-            className="rounded-lg border border-white/10 bg-slate-950/60 p-4"
-            key={item}
+            className="min-h-48 rounded-lg border border-white/10 bg-slate-950/60 p-4"
+            key={entry.day}
           >
-            <p className="font-mono text-xs text-lime-200">Day {index + 1}</p>
-            <p className="mt-2 text-sm font-medium text-slate-100">{item}</p>
+            <p className="font-mono text-xs text-lime-200">Day {entry.day}</p>
+            <p className="mt-2 text-sm font-semibold text-slate-100">
+              {entry.title}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-slate-400">
+              {entry.summary}
+            </p>
+            <p className="mt-4 text-xs font-medium uppercase tracking-[0.16em] text-cyan-200">
+              {entry.signal}
+            </p>
           </div>
         ))}
       </div>
