@@ -17,23 +17,22 @@ test("landing routes into the app and keeps the viewport stable", async ({
 
   await expect(
     page.getByRole("heading", {
-      name: /launch experiments faster than competitors can write specs/i,
+      name: /turn one startup goal into a testable landing-page experiment/i,
     }),
   ).toBeVisible();
-  await expect(page.getByLabel(/launch command center/i)).toBeVisible();
-  await expect(page.getByText(/before launchlab/i)).toBeVisible();
-  await expect(page.getByText(/after launchlab/i)).toBeVisible();
+  await expect(page.getByLabel(/experiment builder preview/i)).toBeVisible();
+  await expect(page.getByText(/from idea to next test/i)).toBeVisible();
   await expectNoHorizontalOverflow(page);
   await page.waitForLoadState("networkidle");
 
-  const demoLink = page.getByRole("link", { name: /try live demo/i });
+  const demoLink = page.getByRole("link", { name: /open experiment builder/i });
   await expect(demoLink).toHaveAttribute("href", "/app");
   await page.goto((await demoLink.getAttribute("href")) ?? "/app");
 
   await expect(page).toHaveURL(/\/app$/);
   await expect(
     page.getByRole("heading", {
-      name: /growth cockpit/i,
+      name: /experiment builder/i,
     }),
   ).toBeVisible();
   await expectNoHorizontalOverflow(page);

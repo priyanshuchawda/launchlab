@@ -26,7 +26,11 @@ describe("Experiment generator app page", () => {
     await waitFor(() => {
       expect(screen.getAllByTestId("experiment-card")).toHaveLength(6);
     });
-    expect(screen.getByText(/pipeline lanes/i)).toBeInTheDocument();
+    expect(screen.getByText(/flow progress/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/^goal$/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^test queue$/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^variant$/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^result$/i).length).toBeGreaterThan(0);
     expect(
       screen.getByRole("region", { name: /quick wins/i }),
     ).toBeInTheDocument();

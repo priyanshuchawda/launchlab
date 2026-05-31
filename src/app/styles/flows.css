@@ -1,0 +1,71 @@
+.builder-flow {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.builder-flow__step {
+  position: relative;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.045);
+  padding: 0.75rem;
+  transition:
+    border-color 200ms var(--launch-ease),
+    background-color 200ms var(--launch-ease),
+    transform 200ms var(--launch-ease);
+}
+
+.builder-flow__step[data-active="true"] {
+  border-color: rgb(34 211 238 / 0.38);
+  background: rgb(34 211 238 / 0.09);
+  transform: translate3d(0, -1px, 0);
+}
+
+.flow-progress {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.flow-progress__step {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.035);
+  padding-inline: 0.8rem;
+  color: rgb(148 163 184);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition:
+    border-color 200ms var(--launch-ease),
+    background-color 200ms var(--launch-ease),
+    color 200ms var(--launch-ease);
+}
+
+.flow-progress__step[data-state="current"] {
+  border-color: rgb(34 211 238 / 0.42);
+  background: rgb(34 211 238 / 0.1);
+  color: rgb(240 249 255);
+}
+
+.flow-progress__step[data-state="done"] {
+  border-color: rgb(163 230 53 / 0.28);
+  background: rgb(163 230 53 / 0.08);
+  color: rgb(217 249 157);
+}
+
+.flow-progress__marker {
+  inline-size: 0.55rem;
+  block-size: 0.55rem;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 0.04);
+}
+
+@media (min-width: 640px) {
+  .flow-progress {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -11,24 +11,24 @@ export function HeroSection() {
       <div className="max-w-3xl motion-reveal">
         <Badge variant="cyan">
           <Sparkles aria-hidden="true" className="size-3.5" />
-          AI experiment dashboard
+          AI experiment builder
         </Badge>
         <h1 className="mt-5 max-w-4xl text-balance font-display text-5xl font-semibold leading-[1.02] tracking-normal text-slate-50 sm:text-6xl">
-          Launch experiments faster than competitors can write specs.
+          Turn one startup goal into a testable landing-page experiment.
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-          Turn messy startup goals into testable landing variants, experiment
-          cards, and conversion insights in minutes.
+          LaunchLab turns a rough growth idea into a prioritized test queue,
+          variant copy, and a measurable next action.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button asChild size="lg">
             <Link href="/app">
-              Try live demo
+              Open experiment builder
               <ArrowRight aria-hidden="true" />
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <Link href="#ship-log">View shipped experiments</Link>
+            <Link href="#ship-log">See build log</Link>
           </Button>
         </div>
       </div>

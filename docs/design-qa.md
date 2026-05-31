@@ -1,14 +1,15 @@
 # Design QA
 
-Final design QA verifies the upgraded LaunchLab cockpit on local, free tooling.
+Final design QA verifies the upgraded LaunchLab experiment builder on local,
+free tooling.
 
 ## Verified Flows
 
-- Landing page renders the premium product story with command-center visual,
-  before/after transformation, feature grid, ship log, and CTA path.
-- App workspace renders the Growth cockpit shell, command rail, generator,
-  pipeline lanes, selected insight panel, A/B variant preview, analytics, and
-  local settings.
+- Landing page renders the premium product story with guided builder preview,
+  flow transformation, feature grid, ship log, and CTA path.
+- App workspace renders the experiment builder shell, flow rail, generator,
+  test queue, selected insight panel, A/B variant preview, analytics, and local
+  settings.
 - Generated experiment cards expose distinct queued, shipped, and selected
   states with text, badges, icons, and semantic `data-*` attributes.
 
@@ -22,11 +23,11 @@ Final design QA verifies the upgraded LaunchLab cockpit on local, free tooling.
 
 | Viewport | Route | Primary heading | Overflow | Console issues |
 | --- | --- | --- | --- | --- |
-| Desktop | `/` | Launch experiments faster than competitors can write specs. | `0` | `0` |
-| Desktop | `/app` | Growth cockpit | `0` | `0` |
+| Desktop | `/` | Turn one startup goal into a testable landing-page experiment. | `0` | `0` |
+| Desktop | `/app` | Experiment builder | `0` | `0` |
 | Desktop | `/case-study` | LaunchLab case study | `0` | `0` |
-| Mobile | `/` | Launch experiments faster than competitors can write specs. | `0` | `0` |
-| Mobile | `/app` | Growth cockpit | `0` | `0` |
+| Mobile | `/` | Turn one startup goal into a testable landing-page experiment. | `0` | `0` |
+| Mobile | `/app` | Experiment builder | `0` | `0` |
 | Mobile | `/case-study` | LaunchLab case study | `0` | `0` |
 
 ## Validation
@@ -40,4 +41,4 @@ pnpm run validation:gates
 The gate covers format, typecheck, lint, unit/component tests, Playwright smoke,
 and production build. Logs are stored in `artifacts/validation/<RUN_ID>/`.
 
-Final passing design QA gate: `RUN_ID=20260531-160012`.
+Final passing design QA gate: `RUN_ID=20260531-165605`.

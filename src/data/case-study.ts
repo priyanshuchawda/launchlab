@@ -4,15 +4,15 @@ export const caseStudySections = [
     title: "Problem",
   },
   {
-    body: "Build a live product surface where a founder enters one growth goal and immediately gets experiments, landing variants, analytics, and a visible ship log.",
+    body: "Build a live product surface where a founder enters one growth goal and immediately gets a guided test queue, landing variants, analytics, and a visible ship log.",
     title: "Idea",
   },
   {
-    body: "The first version shipped the landing shell, experiment generator, actionable cards, A/B preview, analytics dashboard, and public iteration log.",
+    body: "The first version shipped the landing shell, experiment generator, flow progress, actionable cards, A/B preview, analytics, and public iteration log.",
     title: "Features shipped",
   },
   {
-    body: "The interface stays dark, dense, and metric-led. Cards use stable dimensions, clear action labels, visible focus states, and concise text for fast scanning.",
+    body: "The interface stays dark, focused, and metric-led. The guided flow uses stable dimensions, clear action labels, visible focus states, and concise text for fast scanning.",
     title: "Design decisions",
   },
   {

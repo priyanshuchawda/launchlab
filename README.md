@@ -1,20 +1,20 @@
 # LaunchLab
 
 LaunchLab is a frontend SaaS demo for startup founders. A founder enters a
-growth goal, then the product opens a Growth cockpit with ranked experiment
-lanes, selected insight, A/B landing variants, analytics, shipped experiment
-history, and next action recommendations.
+growth goal, then the product opens a clean experiment builder with a visible
+flow from active goal to test queue, variant preview, result signal, analytics,
+shipped experiment history, and next action recommendations.
 
 The goal is to show a real product workflow: generate a test, compare landing
 copy, ship an experiment, and inspect the signal.
 
 ## Product Surface
 
-- Landing page with product positioning, animated command-center visual,
-  before/after transformation, feature grid, and shipped experiment proof.
-- App workspace with Growth cockpit shell, command rail, generator, pipeline
-  lanes, selected insight panel, A/B landing preview, analytics dashboard,
-  command menu, and local settings.
+- Landing page with product positioning, guided builder preview, flow
+  transformation, feature grid, and shipped experiment proof.
+- App workspace with experiment builder shell, flow rail, generator, test queue,
+  selected insight panel, A/B landing preview, analytics, command menu, and
+  local settings.
 - Case study page documenting product decisions and iteration history.
 - Local persistence for generated experiments, selected variant, shipped cards,
   and workspace settings.

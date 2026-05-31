@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { AppCockpitShell } from "@/components/app/app-cockpit-shell";
 
 describe("AppCockpitShell", () => {
-  it("frames the workspace as a premium growth cockpit", () => {
+  it("frames the workspace as a focused experiment builder", () => {
     render(
       <AppCockpitShell>
         <section aria-label="Main workspace">Workspace content</section>
@@ -12,14 +12,18 @@ describe("AppCockpitShell", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: /growth cockpit/i }),
+      screen.getByRole("heading", { name: /experiment builder/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("navigation", { name: /cockpit command rail/i }),
+      screen.getByRole("navigation", { name: /builder flow rail/i }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /test queue/i })).toHaveAttribute(
+      "href",
+      "#board",
+    );
     expect(
-      screen.getByRole("link", { name: /experiment pipeline/i }),
-    ).toHaveAttribute("href", "#board");
+      screen.getAllByText(/goal to test to result/i).length,
+    ).toBeGreaterThan(0);
     expect(screen.getByText(/workspace content/i)).toBeInTheDocument();
   });
 });

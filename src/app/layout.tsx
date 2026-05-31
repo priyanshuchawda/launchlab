@@ -20,8 +20,8 @@ const mono = Geist_Mono({
 
 export const metadata: Metadata = {
   description:
-    "Generate, ship, and track startup growth experiments from one founder goal.",
-  title: "LaunchLab - AI experiment dashboard",
+    "Turn one startup goal into a guided test queue, landing variant, and result signal.",
+  title: "LaunchLab - AI experiment builder",
 };
 
 export default function RootLayout({

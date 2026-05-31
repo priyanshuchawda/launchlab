@@ -1,4 +1,4 @@
-import { BarChart3, FlaskConical, LayoutTemplate, Rocket } from "lucide-react";
+import { BarChart3, FlaskConical, LayoutTemplate } from "lucide-react";
 
 import { PremiumSurface } from "@/components/design/premium-surface";
 
@@ -7,25 +7,19 @@ const features = [
     description:
       "Transform a founder goal into six testable hypotheses with effort and impact.",
     icon: FlaskConical,
-    title: "Experiment generator",
+    title: "Build",
   },
   {
     description:
-      "Compare clean professional and bold startup variants before shipping.",
+      "Compare clean landing-page variants before a test reaches the team.",
     icon: LayoutTemplate,
-    title: "A/B variant preview",
+    title: "Preview",
   },
   {
     description:
-      "Track signups, conversion rate, activation, and best-performing CTAs.",
+      "Track signups, conversion rate, activation, and the next result signal.",
     icon: BarChart3,
-    title: "Analytics dashboard",
-  },
-  {
-    description:
-      "Mark experiments as shipped and keep a visible product iteration log.",
-    icon: Rocket,
-    title: "Ship log",
+    title: "Measure",
   },
 ];
 
@@ -37,17 +31,15 @@ export function FeatureGrid() {
           Product system
         </p>
         <h2 className="mt-2 font-display text-3xl font-semibold tracking-normal text-slate-50">
-          One cockpit for the full experiment loop.
+          A cleaner experiment loop.
         </h2>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-3">
         {features.map((feature) => (
           <PremiumSurface
-            className="min-h-56 p-5 motion-reveal lg:[&:first-child]:col-span-2"
+            className="min-h-52 p-5 motion-reveal"
             key={feature.title}
-            variant={
-              feature.title === "Experiment generator" ? "spotlight" : "lane"
-            }
+            variant={feature.title === "Build" ? "spotlight" : "lane"}
           >
             <div className="grid gap-3">
               <feature.icon
