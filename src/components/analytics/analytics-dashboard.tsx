@@ -88,6 +88,7 @@ export function AnalyticsDashboard() {
     <section
       aria-labelledby="growth-analytics-title"
       className="grid gap-5 rounded-lg border border-cyan-300/20 bg-cyan-300/[0.03] p-4 sm:p-5"
+      id="analytics"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>

@@ -74,7 +74,7 @@ export function ExperimentGenerator() {
   };
 
   return (
-    <section className="grid gap-6">
+    <section className="grid gap-6" id="generator">
       <Card className="overflow-hidden border-cyan-300/20 bg-cyan-300/[0.035]">
         <CardHeader>
           <div className="flex items-center gap-2 text-sm font-medium text-cyan-100">
@@ -126,7 +126,7 @@ export function ExperimentGenerator() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4">
+      <div className="grid gap-4" id="board">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-200">
