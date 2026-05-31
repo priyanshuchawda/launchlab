@@ -5,6 +5,7 @@ out/
 dist/
 coverage/
 artifacts/
+.playwright-mcp/
 .env
 .env.*
 !.env.example
