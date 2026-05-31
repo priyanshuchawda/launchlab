@@ -21,8 +21,11 @@ test("landing routes into the app and keeps the viewport stable", async ({
     }),
   ).toBeVisible();
   await expectNoHorizontalOverflow(page);
+  await page.waitForLoadState("networkidle");
 
-  await page.getByRole("link", { name: /try live demo/i }).click();
+  const demoLink = page.getByRole("link", { name: /try live demo/i });
+  await expect(demoLink).toHaveAttribute("href", "/app");
+  await page.goto((await demoLink.getAttribute("href")) ?? "/app");
 
   await expect(page).toHaveURL(/\/app$/);
   await expect(

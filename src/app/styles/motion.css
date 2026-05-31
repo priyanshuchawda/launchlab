@@ -1,0 +1,97 @@
+@keyframes launch-reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes launch-signal-pulse {
+  0%,
+  100% {
+    opacity: 0.44;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes launch-scan {
+  from {
+    transform: translateX(-45%);
+  }
+
+  to {
+    transform: translateX(45%);
+  }
+}
+
+.motion-reveal {
+  animation: launch-reveal-up 520ms var(--launch-ease) both;
+}
+
+.motion-stagger > * {
+  animation: launch-reveal-up 520ms var(--launch-ease) both;
+}
+
+.motion-stagger > :nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.motion-stagger > :nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.motion-stagger > :nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.motion-hover-lift {
+  transition:
+    transform 220ms var(--launch-ease),
+    border-color 220ms var(--launch-ease),
+    background-color 220ms var(--launch-ease),
+    box-shadow 220ms var(--launch-ease);
+}
+
+.motion-hover-lift:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+.motion-signal-pulse {
+  animation: launch-signal-pulse 1.8s var(--launch-ease) infinite;
+}
+
+.motion-scan {
+  animation: launch-scan 5.5s linear infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* biome-ignore lint/style/noDescendingSpecificity: Reduced-motion reset must override motion utility selectors. */
+  *,
+  ::before,
+  ::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+
+  .motion-reveal,
+  .motion-stagger > *,
+  .motion-signal-pulse,
+  .motion-scan {
+    animation: none;
+  }
+
+  .motion-hover-lift:hover {
+    transform: none;
+  }
+}
