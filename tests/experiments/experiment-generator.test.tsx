@@ -26,6 +26,15 @@ describe("Experiment generator app page", () => {
     await waitFor(() => {
       expect(screen.getAllByTestId("experiment-card")).toHaveLength(6);
     });
-    expect(screen.getByText(/metric to track/i)).toBeInTheDocument();
+    expect(screen.getByText(/pipeline lanes/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /quick wins/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /high impact/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /learning bets/i }),
+    ).toBeInTheDocument();
   });
 });

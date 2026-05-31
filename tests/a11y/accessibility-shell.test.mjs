@@ -4,16 +4,18 @@ import { describe, it } from "node:test";
 
 const baseCss = readFileSync("src/app/styles/base.css", "utf8");
 const motionCss = readFileSync("src/app/styles/motion.css", "utf8");
-const routeFiles = [
-  "src/app/page.tsx",
-  "src/app/app/page.tsx",
-  "src/app/case-study/page.tsx",
+const routeTargets = [
+  ["src/app/page.tsx"],
+  ["src/app/app/page.tsx", "src/components/app/app-cockpit-shell.tsx"],
+  ["src/app/case-study/page.tsx"],
 ];
 
 describe("accessibility shell", () => {
   it("exposes a single skip-link target on each page", () => {
-    for (const routeFile of routeFiles) {
-      const source = readFileSync(routeFile, "utf8");
+    for (const routeFiles of routeTargets) {
+      const source = routeFiles
+        .map((routeFile) => readFileSync(routeFile, "utf8"))
+        .join("\n");
 
       assert.match(source, /<main[^>]*id="main-content"/);
     }
