@@ -40,7 +40,7 @@ function HeroDashboardPreview() {
   return (
     <div className="relative overflow-hidden rounded-lg border border-white/10 bg-slate-950/75 p-4 shadow-2xl shadow-cyan-950/30">
       <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent" />
-      <div className="flex items-center justify-between border-b border-white/10 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
         <div>
           <p className="text-sm font-semibold text-slate-100">Conversion lab</p>
           <p className="text-xs text-slate-500">AI notes app workspace</p>

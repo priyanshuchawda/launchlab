@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { SkipLink } from "@/components/layout/skip-link";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -33,7 +34,10 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
       lang="en"
     >
-      <body>{children}</body>
+      <body>
+        <SkipLink />
+        {children}
+      </body>
     </html>
   );
 }

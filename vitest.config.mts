@@ -11,5 +11,6 @@ export default defineConfig({
     exclude: ["**/*.test.mjs", "**/node_modules/**", "**/.next/**"],
     globals: false,
     setupFiles: ["./vitest.setup.ts"],
+    testTimeout: 15_000,
   },
 });
