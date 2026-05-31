@@ -6,6 +6,10 @@ import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import {
+  PremiumSurface,
+  WorkflowLane,
+} from "@/components/design/premium-surface";
 import { ExperimentCard } from "@/components/experiments/experiment-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { LandingVariantPreview } from "@/components/variants/landing-variant-preview";
 import { generateExperiments } from "@/lib/experiments/generate-experiments";
+import { groupExperimentsByLane } from "@/lib/experiments/group-experiments";
 import { generateLandingVariants } from "@/lib/variants/generate-landing-variants";
 import { useLaunchLabStore } from "@/stores/use-launchlab-store";
 import type { Experiment } from "@/types/experiment";
@@ -54,6 +59,7 @@ export function ExperimentGenerator() {
   const selectedExperiment =
     experiments.find((experiment) => experiment.id === selectedExperimentId) ??
     null;
+  const pipelineLanes = groupExperimentsByLane(experiments);
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -82,7 +88,7 @@ export function ExperimentGenerator() {
 
   return (
     <section className="grid gap-6" id="generator">
-      <Card className="overflow-hidden border-cyan-300/20 bg-cyan-300/[0.035]">
+      <PremiumSurface className="overflow-hidden" variant="spotlight">
         <CardHeader>
           <div className="flex items-center gap-2 text-sm font-medium text-cyan-100">
             <Sparkles aria-hidden="true" className="size-4" />
@@ -131,17 +137,21 @@ export function ExperimentGenerator() {
             </div>
           </form>
         </CardContent>
-      </Card>
+      </PremiumSurface>
 
       <div className="grid gap-4" id="board">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-200">
-              Metric to track
+              Pipeline lanes
             </p>
             <h2 className="mt-2 font-display text-2xl font-semibold tracking-normal text-slate-50">
-              Ranked experiment queue
+              Experiment pipeline
             </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
+              Tests are sorted by effort and impact so the team can ship quick
+              wins, queue larger bets, and keep learning loops visible.
+            </p>
           </div>
           <Badge className="bg-lime-300/10 text-lime-100">
             {experiments.length || 0} ready
@@ -160,19 +170,28 @@ export function ExperimentGenerator() {
         ) : null}
 
         {experiments.length > 0 ? (
-          <div className="grid gap-4 lg:grid-cols-2">
-            {experiments.map((experiment) => (
-              <ExperimentCard
-                experiment={experiment}
-                key={experiment.id}
-                onCreateVariant={handleCreateVariant}
-                onShip={handleShip}
-                status={
-                  shippedExperimentIds.includes(experiment.id)
-                    ? "shipped"
-                    : "queued"
-                }
-              />
+          <div className="grid gap-4 xl:grid-cols-3">
+            {pipelineLanes.map((lane) => (
+              <WorkflowLane
+                description={lane.description}
+                key={lane.id}
+                meta={`${lane.experiments.length} tests`}
+                title={lane.title}
+              >
+                {lane.experiments.map((experiment) => (
+                  <ExperimentCard
+                    experiment={experiment}
+                    key={experiment.id}
+                    onCreateVariant={handleCreateVariant}
+                    onShip={handleShip}
+                    status={
+                      shippedExperimentIds.includes(experiment.id)
+                        ? "shipped"
+                        : "queued"
+                    }
+                  />
+                ))}
+              </WorkflowLane>
             ))}
           </div>
         ) : (

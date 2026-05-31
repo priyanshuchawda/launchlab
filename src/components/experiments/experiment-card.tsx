@@ -1,9 +1,9 @@
 import { FlaskConical, Gauge, Target, TrendingUp } from "lucide-react";
 
+import { PremiumSurface } from "@/components/design/premium-surface";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
   CardContent,
   CardDescription,
   CardHeader,
@@ -49,9 +49,10 @@ export function ExperimentCard({
   const isShipped = status === "shipped";
 
   return (
-    <Card
-      className="grid min-h-[25rem] grid-rows-[auto_1fr] transition-colors duration-200 hover:border-cyan-300/35 hover:bg-cyan-300/[0.04]"
+    <PremiumSurface
+      className="grid min-h-[25rem] grid-rows-[auto_1fr] border-white/10 bg-slate-950/45"
       data-testid="experiment-card"
+      variant="lane"
     >
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
@@ -112,6 +113,6 @@ export function ExperimentCard({
           </Button>
         </div>
       </CardContent>
-    </Card>
+    </PremiumSurface>
   );
 }

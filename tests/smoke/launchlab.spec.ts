@@ -30,7 +30,7 @@ test("landing routes into the app and keeps the viewport stable", async ({
   await expect(page).toHaveURL(/\/app$/);
   await expect(
     page.getByRole("heading", {
-      name: /generate the next startup growth experiment/i,
+      name: /growth cockpit/i,
     }),
   ).toBeVisible();
   await expectNoHorizontalOverflow(page);
