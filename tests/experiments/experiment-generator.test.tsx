@@ -1,27 +1,25 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import AppPage from "@/app/app/page";
+import { ExperimentGenerator } from "@/components/experiments/experiment-generator";
 
 describe("Experiment generator app page", () => {
   it("validates a founder goal and renders generated experiment cards", async () => {
-    const user = userEvent.setup();
+    render(<ExperimentGenerator />);
 
-    render(<AppPage />);
-
-    await user.click(
+    fireEvent.click(
       screen.getByRole("button", { name: /generate experiments/i }),
     );
     expect(
       await screen.findByText(/describe a startup goal/i),
     ).toBeInTheDocument();
 
-    await user.type(
-      screen.getByLabelText(/startup growth goal/i),
-      "I want to increase signup conversion for my AI notes app",
-    );
-    await user.click(
+    fireEvent.change(screen.getByLabelText(/startup growth goal/i), {
+      target: {
+        value: "I want to increase signup conversion for my AI notes app",
+      },
+    });
+    fireEvent.click(
       screen.getByRole("button", { name: /generate experiments/i }),
     );
 
