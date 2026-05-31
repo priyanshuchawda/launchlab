@@ -10,7 +10,7 @@
     "format:check": "biome format .",
     "lint": "biome lint .",
     "test": "vitest run && node --test tests/**/*.test.mjs",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "validation:gates": "node scripts/validation/run-quality-gates.mjs"
   },
   "dependencies": {
