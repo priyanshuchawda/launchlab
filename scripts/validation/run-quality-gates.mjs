@@ -20,6 +20,7 @@ const gates = [
   "pnpm run typecheck",
   "pnpm run lint",
   "pnpm run test",
+  "pnpm run test:smoke",
   "pnpm run build",
 ];
 

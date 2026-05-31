@@ -8,7 +8,12 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    exclude: ["**/*.test.mjs", "**/node_modules/**", "**/.next/**"],
+    exclude: [
+      "**/*.test.mjs",
+      "**/node_modules/**",
+      "**/.next/**",
+      "tests/smoke/**",
+    ],
     globals: false,
     setupFiles: ["./vitest.setup.ts"],
     testTimeout: 15_000,
