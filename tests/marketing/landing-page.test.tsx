@@ -22,6 +22,11 @@ describe("LaunchLab landing page", () => {
     expect(
       screen.getByText(/shipped 12 experiments this week/i),
     ).toBeInTheDocument();
+    expect(screen.getByText(/goal captured/i)).toBeInTheDocument();
+    expect(screen.getByText(/experiment pipeline/i)).toBeInTheDocument();
+    expect(screen.getByText(/before launchlab/i)).toBeInTheDocument();
+    expect(screen.getByText(/after launchlab/i)).toBeInTheDocument();
+    expect(screen.getByText(/launch command center/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /experiment generator/i }),
     ).toBeInTheDocument();
