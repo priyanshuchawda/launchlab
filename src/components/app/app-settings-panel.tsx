@@ -1,17 +1,20 @@
 "use client";
 
 import { Moon, Rows3, Sparkles } from "lucide-react";
-import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-type ThemeMode = "dark" | "focus";
+import { useLaunchLabStore } from "@/stores/use-launchlab-store";
 
 export function AppSettingsPanel() {
-  const [themeMode, setThemeMode] = useState<ThemeMode>("dark");
-  const [compactLayout, setCompactLayout] = useState(false);
-  const [quietMotion, setQuietMotion] = useState(true);
+  const compactLayout = useLaunchLabStore(
+    (state) => state.settings.compactLayout,
+  );
+  const quietMotion = useLaunchLabStore((state) => state.settings.quietMotion);
+  const themeMode = useLaunchLabStore((state) => state.settings.themeMode);
+  const setCompactLayout = useLaunchLabStore((state) => state.setCompactLayout);
+  const setQuietMotion = useLaunchLabStore((state) => state.setQuietMotion);
+  const setThemeMode = useLaunchLabStore((state) => state.setThemeMode);
 
   return (
     <section
@@ -68,7 +71,7 @@ export function AppSettingsPanel() {
             aria-checked={compactLayout}
             aria-label="Compact layout"
             className="flex min-h-12 cursor-pointer items-center justify-between rounded-lg border border-white/10 bg-white/[0.035] px-3 text-left text-sm font-medium text-slate-200 transition-colors duration-200 hover:border-cyan-300/40 focus-visible:ring-2 focus-visible:ring-cyan-300"
-            onClick={() => setCompactLayout((current) => !current)}
+            onClick={() => setCompactLayout(!compactLayout)}
             role="switch"
             type="button"
           >
@@ -83,7 +86,7 @@ export function AppSettingsPanel() {
             aria-checked={quietMotion}
             aria-label="Reduced motion"
             className="flex min-h-12 cursor-pointer items-center justify-between rounded-lg border border-white/10 bg-white/[0.035] px-3 text-left text-sm font-medium text-slate-200 transition-colors duration-200 hover:border-cyan-300/40 focus-visible:ring-2 focus-visible:ring-cyan-300"
-            onClick={() => setQuietMotion((current) => !current)}
+            onClick={() => setQuietMotion(!quietMotion)}
             role="switch"
             type="button"
           >

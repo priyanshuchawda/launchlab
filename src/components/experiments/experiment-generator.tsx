@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { LandingVariantPreview } from "@/components/variants/landing-variant-preview";
 import { generateExperiments } from "@/lib/experiments/generate-experiments";
 import { generateLandingVariants } from "@/lib/variants/generate-landing-variants";
+import { useLaunchLabStore } from "@/stores/use-launchlab-store";
 import type { Experiment } from "@/types/experiment";
 
 const experimentFormSchema = z.object({
@@ -33,13 +34,26 @@ type ExperimentFormValues = z.infer<typeof experimentFormSchema>;
 const defaultGoal = "Increase signup conversion for my AI notes app";
 
 export function ExperimentGenerator() {
-  const [experiments, setExperiments] = useState<Experiment[]>([]);
-  const [shippedExperimentIds, setShippedExperimentIds] = useState<
-    ReadonlySet<string>
-  >(new Set());
   const [feedback, setFeedback] = useState("");
-  const [selectedExperiment, setSelectedExperiment] =
-    useState<Experiment | null>(null);
+  const experiments = useLaunchLabStore((state) => state.generatedExperiments);
+  const shippedExperimentIds = useLaunchLabStore(
+    (state) => state.shippedExperimentIds,
+  );
+  const selectedExperimentId = useLaunchLabStore(
+    (state) => state.selectedExperimentId,
+  );
+  const markExperimentShipped = useLaunchLabStore(
+    (state) => state.markExperimentShipped,
+  );
+  const selectVariantExperiment = useLaunchLabStore(
+    (state) => state.selectVariantExperiment,
+  );
+  const setGeneratedExperiments = useLaunchLabStore(
+    (state) => state.setGeneratedExperiments,
+  );
+  const selectedExperiment =
+    experiments.find((experiment) => experiment.id === selectedExperimentId) ??
+    null;
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -52,24 +66,17 @@ export function ExperimentGenerator() {
   });
 
   const onSubmit: SubmitHandler<ExperimentFormValues> = ({ goal }) => {
-    setExperiments(generateExperiments(goal));
-    setShippedExperimentIds(new Set());
+    setGeneratedExperiments(goal, generateExperiments(goal));
     setFeedback("");
-    setSelectedExperiment(null);
   };
 
   const handleCreateVariant = (experiment: Experiment) => {
-    setSelectedExperiment(experiment);
+    selectVariantExperiment(experiment.id);
     setFeedback(`${experiment.title} queued for landing page variant.`);
   };
 
   const handleShip = (experiment: Experiment) => {
-    setShippedExperimentIds((currentIds) => {
-      const nextIds = new Set(currentIds);
-      nextIds.add(experiment.id);
-
-      return nextIds;
-    });
+    markExperimentShipped(experiment.id);
     setFeedback(`${experiment.title} marked as shipped.`);
   };
 
@@ -161,7 +168,9 @@ export function ExperimentGenerator() {
                 onCreateVariant={handleCreateVariant}
                 onShip={handleShip}
                 status={
-                  shippedExperimentIds.has(experiment.id) ? "shipped" : "queued"
+                  shippedExperimentIds.includes(experiment.id)
+                    ? "shipped"
+                    : "queued"
                 }
               />
             ))}

@@ -1,31 +1,31 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import AppPage from "@/app/app/page";
+import { ExperimentGenerator } from "@/components/experiments/experiment-generator";
 
 async function generateExperimentCards() {
-  const user = userEvent.setup();
-
-  render(<AppPage />);
-  await user.type(
-    screen.getByLabelText(/startup growth goal/i),
-    "Increase signup conversion for my AI notes app",
-  );
-  await user.click(
+  render(<ExperimentGenerator />);
+  fireEvent.change(screen.getByLabelText(/startup growth goal/i), {
+    target: { value: "Increase signup conversion for my AI notes app" },
+  });
+  fireEvent.click(
     screen.getByRole("button", { name: /generate experiments/i }),
   );
 
   await waitFor(() => {
     expect(screen.getAllByTestId("experiment-card")).toHaveLength(6);
   });
-
-  return user;
 }
 
 describe("Experiment card actions", () => {
   it("shows landing variant and ship actions, then marks a card as shipped", async () => {
-    const user = await generateExperimentCards();
+    await generateExperimentCards();
     const [firstCard] = screen.getAllByTestId("experiment-card");
     const card = within(firstCard);
 
@@ -35,7 +35,7 @@ describe("Experiment card actions", () => {
       }),
     ).toBeInTheDocument();
 
-    await user.click(
+    fireEvent.click(
       card.getByRole("button", { name: /mark signup proof strip as shipped/i }),
     );
 
