@@ -1,11 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BarChart3, Gauge, Sparkles, Target, TrendingUp } from "lucide-react";
+import { BarChart3, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { ExperimentCard } from "@/components/experiments/experiment-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,67 +30,12 @@ type ExperimentFormValues = z.infer<typeof experimentFormSchema>;
 
 const defaultGoal = "Increase signup conversion for my AI notes app";
 
-function ScorePill({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: typeof Gauge;
-  label: string;
-  value: number;
-}) {
-  return (
-    <div className="flex min-h-14 items-center gap-3 rounded-lg border border-white/10 bg-slate-950/50 px-3">
-      <Icon aria-hidden="true" className="size-4 text-cyan-200" />
-      <div>
-        <p className="text-xs text-slate-400">{label}</p>
-        <p className="font-mono text-sm font-semibold text-slate-100">
-          {value}/10
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function ExperimentCard({ experiment }: { experiment: Experiment }) {
-  return (
-    <Card
-      className="min-h-72 transition-colors duration-200 hover:border-cyan-300/35 hover:bg-cyan-300/[0.04]"
-      data-testid="experiment-card"
-    >
-      <CardHeader>
-        <div className="flex items-start justify-between gap-3">
-          <Badge>{experiment.stage}</Badge>
-          <Target aria-hidden="true" className="size-5 text-lime-200" />
-        </div>
-        <CardTitle>{experiment.title}</CardTitle>
-        <CardDescription>{experiment.hypothesis}</CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-4">
-        <div className="grid grid-cols-2 gap-3">
-          <ScorePill icon={Gauge} label="Effort" value={experiment.effort} />
-          <ScorePill
-            icon={TrendingUp}
-            label="Impact"
-            value={experiment.expectedImpact}
-          />
-        </div>
-        <div className="rounded-lg border border-white/10 bg-white/[0.035] p-3">
-          <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
-            Metric
-          </p>
-          <p className="mt-1 text-sm font-medium text-slate-100">
-            {experiment.metric}
-          </p>
-        </div>
-        <p className="text-sm leading-6 text-slate-400">{experiment.signal}</p>
-      </CardContent>
-    </Card>
-  );
-}
-
 export function ExperimentGenerator() {
   const [experiments, setExperiments] = useState<Experiment[]>([]);
+  const [shippedExperimentIds, setShippedExperimentIds] = useState<
+    ReadonlySet<string>
+  >(new Set());
+  const [feedback, setFeedback] = useState("");
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -103,6 +49,22 @@ export function ExperimentGenerator() {
 
   const onSubmit: SubmitHandler<ExperimentFormValues> = ({ goal }) => {
     setExperiments(generateExperiments(goal));
+    setShippedExperimentIds(new Set());
+    setFeedback("");
+  };
+
+  const handleCreateVariant = (experiment: Experiment) => {
+    setFeedback(`${experiment.title} queued for landing page variant.`);
+  };
+
+  const handleShip = (experiment: Experiment) => {
+    setShippedExperimentIds((currentIds) => {
+      const nextIds = new Set(currentIds);
+      nextIds.add(experiment.id);
+
+      return nextIds;
+    });
+    setFeedback(`${experiment.title} marked as shipped.`);
   };
 
   return (
@@ -172,11 +134,24 @@ export function ExperimentGenerator() {
             {experiments.length || 0} ready
           </Badge>
         </div>
+        {feedback ? (
+          <output className="rounded-lg border border-lime-300/20 bg-lime-300/10 px-4 py-3 text-sm font-medium text-lime-100">
+            {feedback}
+          </output>
+        ) : null}
 
         {experiments.length > 0 ? (
           <div className="grid gap-4 lg:grid-cols-2">
             {experiments.map((experiment) => (
-              <ExperimentCard experiment={experiment} key={experiment.id} />
+              <ExperimentCard
+                experiment={experiment}
+                key={experiment.id}
+                onCreateVariant={handleCreateVariant}
+                onShip={handleShip}
+                status={
+                  shippedExperimentIds.has(experiment.id) ? "shipped" : "queued"
+                }
+              />
             ))}
           </div>
         ) : (
