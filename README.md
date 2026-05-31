@@ -1,35 +1,75 @@
 # LaunchLab
 
-LaunchLab is a frontend SaaS demo for startup founders. It turns a founder
-growth goal into experiment cards, landing-page variants, analytics, shipped
-experiment history, and next action recommendations.
+LaunchLab is a frontend SaaS demo for startup founders. A founder enters a
+growth goal, then the product generates ranked experiment ideas, A/B landing
+variants, analytics, shipped experiment history, and next action
+recommendations.
 
-## Getting Started
+The goal is to show a real product workflow: generate a test, compare landing
+copy, ship an experiment, and inspect the signal.
 
-Install dependencies and run the development server:
+## Product Surface
+
+- Landing page with product positioning, dashboard preview, feature grid, and
+  shipped experiment proof.
+- App workspace with generator, ranked experiment board, A/B landing preview,
+  analytics dashboard, command menu, and local settings.
+- Case study page documenting product decisions and iteration history.
+- Local persistence for generated experiments, selected variant, shipped cards,
+  and workspace settings.
+
+## Stack
+
+- Next.js App Router and React
+- TypeScript strict mode
+- Tailwind CSS v4
+- Radix primitives and owned UI components
+- React Hook Form and Zod
+- Zustand with localStorage
+- Recharts
+- Vitest, React Testing Library, Node test runner, and Playwright
+- Biome for formatting and linting
+
+## Local Setup
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Validation
+## Quality Gates
 
-Run the compact local gate before opening PRs:
+Run the compact validation gate before PRs:
 
 ```bash
 pnpm run validation:gates
 ```
 
-This runs format, typecheck, lint, tests, and build with logs stored under
-`artifacts/validation/`.
+The gate runs:
+
+- `pnpm run format:check`
+- `pnpm run typecheck`
+- `pnpm run lint`
+- `pnpm run test`
+- `pnpm run test:smoke`
+- `pnpm run build`
+
+Logs are written to `artifacts/validation/<RUN_ID>/`.
+
+## Demo Notes
+
+- `/` is the public product landing page.
+- `/app` is the interactive workspace.
+- `/case-study` explains the build and product decisions.
+- The app is frontend-only and uses local mock data plus localStorage.
+- No paid services are required.
 
 ## Deployment
 
 LaunchLab is not deployed in this phase. There is no selected hosting provider,
 no custom domain, no Cloudflare setup, and no CI/CD workflow.
 
-For the current deployment-readiness notes, see
+Deployment-readiness notes are in
 [docs/deployment-readiness.md](docs/deployment-readiness.md).
