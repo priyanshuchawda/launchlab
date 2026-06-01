@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { SkipLink } from "@/components/layout/skip-link";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({
         <SkipLink />
         <Navbar />
         <div className="pt-16">{children}</div>
+        <Footer />
       </body>
     </html>
   );

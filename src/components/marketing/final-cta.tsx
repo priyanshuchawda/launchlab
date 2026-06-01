@@ -1,31 +1,47 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { CtaOrb } from "@/components/marketing/cta-orb";
 
 export function FinalCta() {
   return (
-    <section className="mx-auto max-w-6xl py-16">
-      <div className="grid gap-6 rounded-lg border border-white/10 bg-white/[0.045] p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-center">
-        <div>
-          <p className="font-display text-2xl font-semibold tracking-normal text-slate-50">
-            Ready to turn one startup goal into a week of growth tests?
-          </p>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-            The live demo will generate experiments, variants, analytics, and
-            next actions without requiring login.
-          </p>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
-          <Button asChild size="lg" variant="outline">
-            <Link href="/case-study">Read case study</Link>
-          </Button>
-          <Button asChild size="lg">
-            <Link href="/app">
+    <section className="final-cta mx-auto max-w-6xl px-5 py-20 sm:px-8">
+      <div className="final-cta__card surface-border-trace">
+        {/* Atmospheric glow orbs */}
+        <CtaOrb />
+
+        <div className="final-cta__content">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300/80">
+              Ready to ship?
+            </p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+              Turn one startup goal into{" "}
+              <span className="gradient-text-static">a week of growth tests.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-400">
+              The live demo will generate experiments, variants, analytics, and
+              next actions — no login required.
+            </p>
+          </div>
+
+          <div className="final-cta__actions">
+            <Link
+              className="final-cta__primary"
+              href="/app"
+              id="final-cta-primary"
+            >
               Open demo
-              <ArrowRight aria-hidden="true" />
+              <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
-          </Button>
+            <Link
+              className="final-cta__secondary"
+              href="/case-study"
+              id="final-cta-secondary"
+            >
+              Read case study
+            </Link>
+          </div>
         </div>
       </div>
     </section>
