@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════════════════════════ */
+
+.hero-section {
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .hero-section {
+    padding-inline: 2rem;
+  }
+}
+
+/* ── Badge ─────────────────────────────────────────────── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(34 211 238 / 0.3);
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgb(34 211 238 / 0.1),
+    rgb(139 92 246 / 0.1)
+  );
+  padding: 0.375rem 0.875rem 0.375rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgb(186 230 253);
+  box-shadow:
+    0 0 0 1px rgb(34 211 238 / 0.08),
+    0 0 20px rgb(34 211 238 / 0.08);
+  animation: launch-reveal-down 400ms var(--launch-ease) both;
+}
+
+.hero-badge__dot {
+  display: block;
+  size: 0.5rem;
+  border-radius: 999px;
+  background: var(--launch-cyan);
+  box-shadow: 0 0 6px var(--launch-cyan);
+}
+
+/* ── Headline ──────────────────────────────────────────── */
+.hero-section__headline {
+  animation: launch-reveal-up var(--launch-duration-slow) var(--launch-ease) 80ms both;
+}
+
+/* ── CTAs ──────────────────────────────────────────────── */
+.hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  background: linear-gradient(
+    135deg,
+    var(--launch-cyan) 0%,
+    #67c7f5 40%,
+    var(--launch-violet) 80%,
+    var(--launch-cyan) 100%
+  );
+  background-size: 200% 100%;
+  padding: 0.75rem 1.375rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #020617;
+  text-decoration: none;
+  box-shadow:
+    0 0 24px rgb(34 211 238 / 0.35),
+    0 4px 16px rgb(0 0 0 / 0.24);
+  transition:
+    background-position var(--launch-duration-slow) var(--launch-ease),
+    box-shadow var(--launch-duration-base) var(--launch-ease),
+    transform var(--launch-duration-fast) var(--launch-ease-spring);
+}
+
+.hero-cta-primary:hover {
+  background-position: 100% 0;
+  box-shadow:
+    0 0 40px rgb(34 211 238 / 0.55),
+    0 6px 24px rgb(0 0 0 / 0.3);
+  transform: translateY(-2px);
+}
+
+.hero-cta-primary:active {
+  transform: translateY(0);
+}
+
+.hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: rgb(255 255 255 / 0.04);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--launch-muted);
+  text-decoration: none;
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    color var(--launch-duration-base) var(--launch-ease),
+    background var(--launch-duration-base) var(--launch-ease),
+    transform var(--launch-duration-fast) var(--launch-ease);
+}
+
+.hero-cta-secondary:hover {
+  border-color: rgb(255 255 255 / 0.24);
+  background: rgb(255 255 255 / 0.07);
+  color: var(--launch-copy);
+  transform: translateY(-1px);
+}
+
+/* ── Social proof avatars ──────────────────────────────── */
+.hero-section__social-proof {
+  animation: launch-reveal-up var(--launch-duration-slow) var(--launch-ease) 320ms both;
+}
+
+.hero-section__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.hero-section__avatar {
+  display: inline-flex;
+  size: 1.875rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 2px solid rgb(2 6 23 / 0.8);
+  background: linear-gradient(135deg, rgb(34 211 238 / 0.3), rgb(139 92 246 / 0.3));
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--launch-copy);
+  margin-left: -0.5rem;
+}
+
+.hero-section__avatar:first-child {
+  margin-left: 0;
+}
+
+/* ── Launch visual card ─────────────────────────────────── */
+.launch-visual {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  padding: 1.25rem;
+}
+
+.launch-visual__scan {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.launch-visual__scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(34 211 238 / 0.6),
+    transparent
+  );
+  filter: blur(1px);
+}
