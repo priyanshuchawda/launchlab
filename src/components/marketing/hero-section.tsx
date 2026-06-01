@@ -1,38 +1,53 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { LaunchCommandVisual } from "@/components/marketing/launch-command-visual";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { HeroBadge } from "@/components/marketing/hero-badge";
+import { HeroActions } from "@/components/marketing/hero-actions";
 
 export function HeroSection() {
   return (
-    <section className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl gap-8 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-      <div className="max-w-3xl motion-reveal">
-        <Badge variant="cyan">
-          <Sparkles aria-hidden="true" className="size-3.5" />
-          AI experiment builder
-        </Badge>
-        <h1 className="mt-5 max-w-4xl text-balance font-display text-5xl font-semibold leading-[1.02] tracking-normal text-slate-50 sm:text-6xl">
-          Turn one startup goal into a testable landing-page experiment.
+    <section
+      className="hero-section mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl gap-10 px-5 py-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
+      id="hero"
+    >
+      <div className="hero-section__content max-w-3xl motion-reveal">
+        <HeroBadge />
+
+        <h1 className="hero-section__headline mt-6 max-w-4xl text-balance font-display text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-[3.75rem]">
+          Turn one startup goal into a{" "}
+          <span className="gradient-text">testable experiment.</span>
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+
+        <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300/90">
           LaunchLab turns a rough growth idea into a prioritized test queue,
-          variant copy, and a measurable next action.
+          variant copy, and a measurable next action — all in one flow.
         </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button asChild size="lg">
-            <Link href="/app">
-              Open experiment builder
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#ship-log">See build log</Link>
-          </Button>
+
+        <HeroActions />
+
+        <div className="hero-section__social-proof mt-8 flex items-center gap-3">
+          <div className="hero-section__avatars" aria-hidden="true">
+            {["C", "V", "A"].map((letter, i) => (
+              <span
+                className="hero-section__avatar"
+                key={letter}
+                style={{ zIndex: 3 - i }}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
+          <p className="text-sm text-slate-400">
+            <span className="font-semibold text-slate-200">120+</span> founders
+            running experiments this week
+          </p>
         </div>
       </div>
-      <LaunchCommandVisual />
+
+      <div className="motion-reveal motion-float" style={{ animationDelay: "200ms" }}>
+        <LaunchCommandVisual />
+      </div>
     </section>
   );
 }
