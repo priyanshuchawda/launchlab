@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   ClipboardList,
   LineChart,
   type LucideIcon,
@@ -7,85 +6,80 @@ import {
   Rocket,
 } from "lucide-react";
 
-import { PremiumSurface } from "@/components/design/premium-surface";
+import { SectionLabel } from "@/components/marketing/section-label";
+import { FlowStep } from "@/components/marketing/flow-step";
+import { FlowConnector } from "@/components/marketing/flow-connector";
 
-const flowSteps = [
-  {
-    detail: "Write the measurable startup outcome.",
-    icon: ClipboardList,
-    label: "Goal",
-  },
-  {
-    detail: "Rank tests by effort, impact, and learning value.",
-    icon: Rocket,
-    label: "Test queue",
-  },
-  {
-    detail: "Open the landing-page angle before shipping.",
-    icon: PenLine,
-    label: "Variant",
-  },
-  {
-    detail: "Keep the next result signal attached to the test.",
-    icon: LineChart,
-    label: "Result",
-  },
-] as const;
+type StepColor = "cyan" | "violet" | "lime" | "amber";
 
-export function TransformationStrip() {
-  return (
-    <section className="mx-auto max-w-6xl py-10">
-      <PremiumSurface
-        className="grid gap-5 p-5"
-        interactive={false}
-        variant="spotlight"
-      >
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-200">
-              From idea to next test
-            </p>
-            <h2 className="mt-2 font-display text-2xl font-semibold tracking-normal text-slate-50">
-              One visible flow from goal to result.
-            </h2>
-          </div>
-          <div className="hidden size-11 items-center justify-center rounded-lg border border-cyan-300/20 bg-cyan-300/10 text-cyan-100 sm:flex">
-            <ArrowRight aria-hidden="true" className="size-5" />
-          </div>
-        </div>
-        <div className="grid gap-3 md:grid-cols-4">
-          {flowSteps.map(({ detail, icon: Icon, label }) => (
-            <TransformationStep
-              detail={detail}
-              icon={Icon}
-              key={label}
-              label={label}
-            />
-          ))}
-        </div>
-      </PremiumSurface>
-    </section>
-  );
-}
-
-function TransformationStep({
-  detail,
-  icon: Icon,
-  label,
-}: {
+const flowSteps: {
   detail: string;
   icon: LucideIcon;
   label: string;
-}) {
+  color: StepColor;
+  number: string;
+}[] = [
+  {
+    detail: "Write the measurable startup outcome you want to achieve.",
+    icon: ClipboardList,
+    label: "Goal",
+    color: "cyan",
+    number: "01",
+  },
+  {
+    detail: "Rank tests by effort, impact, and learning value automatically.",
+    icon: Rocket,
+    label: "Test queue",
+    color: "violet",
+    number: "02",
+  },
+  {
+    detail: "Open the landing-page angle and variant copy before shipping.",
+    icon: PenLine,
+    label: "Variant",
+    color: "lime",
+    number: "03",
+  },
+  {
+    detail: "Keep the next result signal attached to the test that caused it.",
+    icon: LineChart,
+    label: "Result",
+    color: "amber",
+    number: "04",
+  },
+];
+
+export function TransformationStrip() {
   return (
-    <div className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-      <div className="flex items-center gap-2 text-sm font-semibold text-slate-100">
-        <span className="text-cyan-200">
-          <Icon aria-hidden="true" className="size-5" />
-        </span>
-        {label}
+    <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
+      <div className="transformation-strip surface-command surface-shimmer">
+        {/* Top shimmer line inherited from surface-command */}
+        <div className="transformation-strip__header">
+          <div>
+            <SectionLabel label="From idea to next test" />
+            <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+              One visible flow from goal to result.
+            </h2>
+          </div>
+        </div>
+
+        <div className="transformation-strip__steps">
+          {flowSteps.map((step, index) => (
+            <div className="transformation-strip__step-wrapper" key={step.label}>
+              <FlowStep
+                color={step.color}
+                detail={step.detail}
+                icon={step.icon}
+                label={step.label}
+                number={step.number}
+              />
+              {index < flowSteps.length - 1 && (
+                <FlowConnector color={step.color} />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-      <p className="mt-3 text-sm leading-6 text-slate-400">{detail}</p>
-    </div>
+    </section>
   );
 }
