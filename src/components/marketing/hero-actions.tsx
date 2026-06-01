@@ -1,3 +1,7 @@
+/** hero-actions.tsx
+ * #ship-log is a hash anchor, not a typed page route — use native <a>.
+ * /app is a real route and uses <Link>.
+ */
 import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
 
@@ -8,10 +12,11 @@ export function HeroActions() {
         Open experiment builder
         <ArrowRight aria-hidden="true" className="size-4" />
       </Link>
-      <Link className="hero-cta-secondary" href="#ship-log" id="hero-cta-secondary">
+      {/* Hash anchor — not a typed route, use <a> */}
+      <a className="hero-cta-secondary" href="#ship-log" id="hero-cta-secondary">
         <Play aria-hidden="true" className="size-3.5 fill-current" />
         See build log
-      </Link>
+      </a>
     </div>
   );
 }
