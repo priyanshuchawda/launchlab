@@ -1,34 +1,35 @@
-import { Badge } from "@/components/ui/badge";
+import { SectionLabel } from "@/components/marketing/section-label";
+import { ShipLogCard } from "@/components/marketing/ship-log-card";
 import { shipLogEntries } from "@/data/ship-log";
 
 export function ShipLogPreview() {
   return (
-    <section className="mx-auto max-w-6xl py-16" id="ship-log">
-      <div className="mb-6 flex items-end justify-between gap-4">
+    <section
+      className="mx-auto max-w-6xl px-5 py-20 sm:px-8"
+      id="ship-log"
+    >
+      <div className="mb-10 flex items-end justify-between gap-4">
         <div>
-          <Badge variant="violet">Public ship log</Badge>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-normal text-slate-50">
-            Evidence of shipping, not just polishing.
+          <SectionLabel label="Public ship log" />
+          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+            Evidence of shipping, not polishing.
           </h2>
+          <p className="mt-3 max-w-xl text-base leading-7 text-slate-400">
+            Every day is committed. Every signal is measurable.
+          </p>
         </div>
       </div>
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-5">
-        {shipLogEntries.map((entry) => (
-          <div
-            className="min-h-48 rounded-lg border border-white/10 bg-slate-950/60 p-4"
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        {shipLogEntries.map((entry, index) => (
+          <ShipLogCard
+            day={entry.day}
+            index={index}
             key={entry.day}
-          >
-            <p className="font-mono text-xs text-lime-200">Day {entry.day}</p>
-            <p className="mt-2 text-sm font-semibold text-slate-100">
-              {entry.title}
-            </p>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              {entry.summary}
-            </p>
-            <p className="mt-4 text-xs font-medium uppercase tracking-[0.16em] text-cyan-200">
-              {entry.signal}
-            </p>
-          </div>
+            signal={entry.signal}
+            summary={entry.summary}
+            title={entry.title}
+          />
         ))}
       </div>
     </section>
