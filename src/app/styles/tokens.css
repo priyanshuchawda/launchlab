@@ -15,18 +15,64 @@
 }
 
 :root {
+  /* ── Base colours ─────────────────────────────────────── */
   --launch-bg: #020617;
   --launch-panel: rgb(15 23 42 / 0.72);
   --launch-panel-strong: rgb(2 6 23 / 0.88);
   --launch-line: rgb(255 255 255 / 0.1);
   --launch-line-strong: rgb(34 211 238 / 0.3);
+
+  /* ── Brand accents ────────────────────────────────────── */
   --launch-cyan: #22d3ee;
+  --launch-cyan-dim: rgb(34 211 238 / 0.15);
   --launch-lime: #a3e635;
+  --launch-lime-dim: rgb(163 230 53 / 0.15);
   --launch-violet: #8b5cf6;
+  --launch-violet-dim: rgb(139 92 246 / 0.15);
   --launch-amber: #fbbf24;
+  --launch-amber-dim: rgb(251 191 36 / 0.15);
+  --launch-coral: #f87171;
+  --launch-indigo: #6366f1;
+
+  /* ── Aurora gradient (used for text & backgrounds) ─────── */
+  --aurora-gradient: linear-gradient(
+    135deg,
+    var(--launch-cyan) 0%,
+    var(--launch-violet) 45%,
+    var(--launch-lime) 100%
+  );
+  --aurora-gradient-text: linear-gradient(
+    120deg,
+    #67e8f9 0%,
+    #a78bfa 40%,
+    #bef264 80%,
+    #67e8f9 100%
+  );
+
+  /* ── Copy ─────────────────────────────────────────────── */
   --launch-copy: #f8fafc;
   --launch-muted: #94a3b8;
-  --launch-shadow-cyan: 0 24px 80px rgb(8 145 178 / 0.18);
-  --launch-shadow-lime: 0 24px 80px rgb(132 204 22 / 0.12);
+  --launch-subtle: #475569;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --launch-shadow-cyan: 0 24px 80px rgb(8 145 178 / 0.22),
+    0 0 0 1px rgb(34 211 238 / 0.08);
+  --launch-shadow-lime: 0 24px 80px rgb(132 204 22 / 0.16);
+  --launch-shadow-violet: 0 24px 80px rgb(139 92 246 / 0.2);
+  --launch-shadow-ambient: 0 40px 120px rgb(0 0 0 / 0.5);
+  --launch-glow-cyan: 0 0 20px rgb(34 211 238 / 0.4),
+    0 0 60px rgb(34 211 238 / 0.15);
+  --launch-glow-violet: 0 0 20px rgb(139 92 246 / 0.4),
+    0 0 60px rgb(139 92 246 / 0.15);
+
+  /* ── Motion ───────────────────────────────────────────── */
   --launch-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --launch-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --launch-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --launch-duration-fast: 160ms;
+  --launch-duration-base: 280ms;
+  --launch-duration-slow: 520ms;
+
+  /* ── Shimmer ──────────────────────────────────────────── */
+  --shimmer-bg-size: 200% 100%;
 }
