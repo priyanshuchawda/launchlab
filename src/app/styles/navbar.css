@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════════════ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  background: rgb(2 6 23 / 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition:
+    background var(--launch-duration-base) var(--launch-ease),
+    border-color var(--launch-duration-base) var(--launch-ease),
+    backdrop-filter var(--launch-duration-base) var(--launch-ease);
+}
+
+.navbar--scrolled {
+  border-bottom-color: rgb(255 255 255 / 0.07);
+  background: rgb(2 6 23 / 0.72);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 1px 0 rgb(34 211 238 / 0.06), 0 8px 32px rgb(0 0 0 / 0.24);
+}
+
+.navbar__inner {
+  display: flex;
+  max-width: 80rem;
+  align-items: center;
+  gap: 2rem;
+  margin-inline: auto;
+  padding: 0.875rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .navbar__inner {
+    padding-inline: 2rem;
+  }
+}
+
+/* ── Logo ──────────────────────────────────────────────── */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: opacity var(--launch-duration-fast) var(--launch-ease);
+}
+
+.nav-logo:hover {
+  opacity: 0.85;
+}
+
+.nav-logo__icon {
+  display: inline-flex;
+  size: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  border: 1px solid rgb(34 211 238 / 0.3);
+  background: linear-gradient(
+    135deg,
+    rgb(34 211 238 / 0.15),
+    rgb(139 92 246 / 0.15)
+  );
+  padding: 0.3rem;
+  color: var(--launch-cyan);
+  box-shadow: 0 0 12px rgb(34 211 238 / 0.18);
+}
+
+.nav-logo__text {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--launch-copy);
+}
+
+.nav-logo__text--accent {
+  background: linear-gradient(120deg, var(--launch-cyan), var(--launch-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Links ─────────────────────────────────────────────── */
+.nav-links {
+  display: none;
+  flex: 1;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-links__item {
+  position: relative;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--launch-muted);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: color var(--launch-duration-fast) var(--launch-ease);
+}
+
+.nav-links__item::after {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    var(--launch-cyan),
+    var(--launch-violet)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--launch-duration-base) var(--launch-ease);
+}
+
+.nav-links__item:hover {
+  color: var(--launch-copy);
+}
+
+.nav-links__item:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── CTA ───────────────────────────────────────────────── */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--launch-bg);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--launch-cyan) 0%,
+    #67c7f5 50%,
+    var(--launch-cyan) 100%
+  );
+  background-size: 200% 100%;
+  box-shadow:
+    0 0 16px rgb(34 211 238 / 0.3),
+    0 2px 8px rgb(0 0 0 / 0.2);
+  transition:
+    background-position var(--launch-duration-slow) var(--launch-ease),
+    box-shadow var(--launch-duration-base) var(--launch-ease),
+    transform var(--launch-duration-fast) var(--launch-ease);
+  white-space: nowrap;
+}
+
+.nav-cta:hover {
+  background-position: 100% 0;
+  box-shadow:
+    0 0 28px rgb(34 211 238 / 0.5),
+    0 4px 16px rgb(0 0 0 / 0.24);
+  transform: translateY(-1px);
+}
+
+.nav-cta:active {
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .nav-cta {
+    margin-left: 0;
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Navbar } from "@/components/layout/navbar";
 import { SkipLink } from "@/components/layout/skip-link";
 import "./globals.css";
 
@@ -21,7 +22,7 @@ const mono = Geist_Mono({
 export const metadata: Metadata = {
   description:
     "Turn one startup goal into a guided test queue, landing variant, and result signal.",
-  title: "LaunchLab - AI experiment builder",
+  title: "LaunchLab — AI Experiment Builder",
 };
 
 export default function RootLayout({
@@ -37,7 +38,8 @@ export default function RootLayout({
     >
       <body>
         <SkipLink />
-        {children}
+        <Navbar />
+        <div className="pt-16">{children}</div>
       </body>
     </html>
   );
