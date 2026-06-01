@@ -1,0 +1,112 @@
+/* ═══════════════════════════════════════════════════════════
+   FEATURE GRID
+═══════════════════════════════════════════════════════════ */
+
+/* ── Section label ─────────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-label__line {
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--launch-cyan), transparent);
+}
+
+.section-label__text {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--launch-cyan);
+}
+
+/* ── Feature card ──────────────────────────────────────── */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid;
+  border-radius: 0.875rem;
+  transition:
+    transform var(--launch-duration-base) var(--launch-ease),
+    box-shadow var(--launch-duration-base) var(--launch-ease),
+    border-color var(--launch-duration-base) var(--launch-ease);
+}
+
+.feature-card:hover {
+  transform: translate3d(0, -4px, 0);
+}
+
+.feature-card__accent-line {
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  pointer-events: none;
+}
+
+.feature-card__body {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  min-height: 14rem;
+}
+
+.feature-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.feature-card__step {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.feature-card__highlight {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.feature-card__icon {
+  display: inline-flex;
+  size: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  padding: 0.625rem;
+  transition: box-shadow var(--launch-duration-base) var(--launch-ease);
+}
+
+.feature-card:hover .feature-card__icon {
+  box-shadow: 0 0 16px currentColor;
+}
+
+.feature-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--launch-copy);
+  margin-block: -0.25rem;
+}
+
+.feature-card__description {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--launch-muted);
+}
