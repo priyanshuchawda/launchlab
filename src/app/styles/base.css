@@ -9,37 +9,93 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Animated ambient orbs ──────────────────────────────────────── */
 body {
+  position: relative;
   min-height: 100vh;
   max-width: 100%;
   overflow-x: clip;
+  color: var(--launch-copy);
+
   background:
     linear-gradient(180deg, rgb(2 6 23 / 0.24), var(--launch-bg) 44rem),
-    radial-gradient(
-      circle at top left,
-      rgb(34 211 238 / 0.14),
-      transparent 34rem
-    ),
-    radial-gradient(
-      circle at 80% 12%,
-      rgb(139 92 246 / 0.16),
-      transparent 30rem
-    ), var(--launch-bg);
-  color: var(--launch-copy);
+    var(--launch-bg);
 }
 
+/* Orb 1 – cyan top-left */
 body::before {
   position: fixed;
   inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 10% 5%,
+      rgb(34 211 238 / 0.13),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 88% 8%,
+      rgb(139 92 246 / 0.15),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 60% 80%,
+      rgb(163 230 53 / 0.07),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 30% 25% at 30% 60%,
+      rgb(99 102 241 / 0.08),
+      transparent
+    );
+  animation: orb-drift 18s ease-in-out infinite alternate;
+}
+
+/* Grid overlay */
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
   content: "";
   background-image:
-    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+    linear-gradient(rgb(255 255 255 / 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.022) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, black, transparent 70%);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
 }
 
+/* All content above the fixed orbs */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes orb-drift {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+
+  33% {
+    opacity: 0.85;
+    transform: scale(1.08) translate(2%, 1.5%);
+  }
+
+  66% {
+    opacity: 0.9;
+    transform: scale(0.96) translate(-1.5%, 2%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.04) translate(1%, -1%);
+  }
+}
+
+/* ── Interactive elements ────────────────────────────────────────── */
 button,
 a {
   -webkit-tap-highlight-color: transparent;
@@ -49,9 +105,27 @@ a {
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid #67e8f9;
   outline-offset: 3px;
+  border-radius: 4px;
 }
 
 ::selection {
-  background: rgb(34 211 238 / 0.32);
+  background: rgb(34 211 238 / 0.28);
   color: var(--launch-copy);
+}
+
+/* ── Gradient text utility ───────────────────────────────────────── */
+.gradient-text {
+  background: var(--aurora-gradient-text);
+  background-size: var(--shimmer-bg-size);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 4s linear infinite;
+}
+
+.gradient-text-static {
+  background: linear-gradient(120deg, #67e8f9 0%, #a78bfa 55%, #bef264 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

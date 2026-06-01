@@ -1,7 +1,23 @@
+/* ═══════════════════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════════════════ */
+
 @keyframes launch-reveal-up {
   from {
     opacity: 0;
-    transform: translate3d(0, 12px, 0);
+    transform: translate3d(0, 16px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes launch-reveal-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
   }
 
   to {
@@ -33,61 +49,220 @@
   }
 }
 
-.motion-reveal {
-  animation: launch-reveal-up 520ms var(--launch-ease) both;
+@keyframes text-shimmer {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
 }
 
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgb(34 211 238 / 0.2), 0 0 40px rgb(34 211 238 / 0.08);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgb(34 211 238 / 0.4), 0 0 80px rgb(34 211 238 / 0.16);
+  }
+}
+
+@keyframes glow-pulse-violet {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgb(139 92 246 / 0.2),
+      0 0 40px rgb(139 92 246 / 0.08);
+  }
+
+  50% {
+    box-shadow:
+      0 0 28px rgb(139 92 246 / 0.45),
+      0 0 90px rgb(139 92 246 / 0.2);
+  }
+}
+
+@keyframes border-trace {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes shimmer-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes dot-bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UTILITY CLASSES
+═══════════════════════════════════════════════════════════ */
+
+/* Reveal on page load */
+.motion-reveal {
+  animation: launch-reveal-up var(--launch-duration-slow) var(--launch-ease)
+    both;
+}
+
+.motion-reveal-down {
+  animation: launch-reveal-down 400ms var(--launch-ease) both;
+}
+
+/* Stagger children */
 .motion-stagger > * {
-  animation: launch-reveal-up 520ms var(--launch-ease) both;
+  animation: launch-reveal-up var(--launch-duration-slow) var(--launch-ease)
+    both;
 }
 
 .motion-stagger > :nth-child(2) {
-  animation-delay: 70ms;
+  animation-delay: 80ms;
 }
 
 .motion-stagger > :nth-child(3) {
-  animation-delay: 140ms;
+  animation-delay: 160ms;
 }
 
 .motion-stagger > :nth-child(4) {
-  animation-delay: 210ms;
+  animation-delay: 240ms;
 }
 
+.motion-stagger > :nth-child(5) {
+  animation-delay: 320ms;
+}
+
+/* Hover lift */
 .motion-hover-lift {
   transition:
-    transform 220ms var(--launch-ease),
-    border-color 220ms var(--launch-ease),
-    background-color 220ms var(--launch-ease),
-    box-shadow 220ms var(--launch-ease);
+    transform var(--launch-duration-base) var(--launch-ease),
+    border-color var(--launch-duration-base) var(--launch-ease),
+    background-color var(--launch-duration-base) var(--launch-ease),
+    box-shadow var(--launch-duration-base) var(--launch-ease);
 }
 
 .motion-hover-lift:hover {
-  transform: translate3d(0, -2px, 0);
+  transform: translate3d(0, -3px, 0);
 }
 
+/* Continuous float */
+.motion-float {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+/* Signal dot pulse */
 .motion-signal-pulse {
   animation: launch-signal-pulse 1.8s var(--launch-ease) infinite;
 }
 
+/* Scan line */
 .motion-scan {
   animation: launch-scan 5.5s linear infinite alternate;
 }
 
+/* Glow pulse */
+.motion-glow-pulse {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+.motion-glow-pulse-violet {
+  animation: glow-pulse-violet 2.5s ease-in-out infinite;
+}
+
+/* Shimmer overlay (position parent relative + overflow-hidden) */
+.motion-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.motion-shimmer::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.06) 50%,
+    transparent 60%
+  );
+  animation: shimmer-sweep 3s ease-in-out infinite;
+}
+
+/* Spin slow (for decorative icons) */
+.motion-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Reduced motion overrides */
 @media (prefers-reduced-motion: reduce) {
-  /* biome-ignore lint/style/noDescendingSpecificity: Reduced-motion reset must override motion utility selectors. */
+  /* biome-ignore lint/style/noDescendingSpecificity: Reduced-motion reset */
   *,
   ::before,
   ::after {
-    scroll-behavior: auto;
-    transition-duration: 0.01ms;
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 
   .motion-reveal,
+  .motion-reveal-down,
   .motion-stagger > *,
   .motion-signal-pulse,
-  .motion-scan {
+  .motion-scan,
+  .motion-glow-pulse,
+  .motion-glow-pulse-violet,
+  .motion-float,
+  .motion-spin-slow {
     animation: none;
   }
 
