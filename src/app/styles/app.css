@@ -1,0 +1,337 @@
+/* ═══════════════════════════════════════════════════════════
+   COCKPIT HEADER
+═══════════════════════════════════════════════════════════ */
+
+.cockpit-header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(34 211 238 / 0.28);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(34 211 238 / 0.1), rgb(139 92 246 / 0.1));
+  padding: 0.3rem 0.875rem 0.3rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgb(186 230 253);
+}
+
+.cockpit-header__badge-dot {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--launch-cyan);
+  box-shadow: 0 0 6px var(--launch-cyan);
+}
+
+.cockpit-header__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--launch-copy);
+}
+
+/* Stat tiles */
+.cockpit-stat {
+  display: grid;
+  gap: 0.5rem;
+  border: 1px solid;
+  border-radius: 0.75rem;
+  background: rgb(2 6 23 / 0.6);
+  padding: 1rem;
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    box-shadow var(--launch-duration-base) var(--launch-ease);
+}
+
+.cockpit-stat:hover {
+  box-shadow: 0 0 20px currentColor;
+}
+
+.cockpit-stat__label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--launch-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cockpit-stat__value {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMMAND RAIL
+═══════════════════════════════════════════════════════════ */
+
+.cockpit-rail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.04);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--launch-muted);
+  text-decoration: none;
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    color var(--launch-duration-base) var(--launch-ease),
+    background var(--launch-duration-base) var(--launch-ease);
+}
+
+.cockpit-rail__back:hover {
+  border-color: rgb(255 255 255 / 0.2);
+  background: rgb(255 255 255 / 0.07);
+  color: var(--launch-copy);
+}
+
+.cockpit-rail__item {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 0.625rem;
+  background: rgb(255 255 255 / 0.03);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--launch-muted);
+  text-decoration: none;
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    background var(--launch-duration-base) var(--launch-ease),
+    color var(--launch-duration-base) var(--launch-ease),
+    transform var(--launch-duration-fast) var(--launch-ease);
+}
+
+.cockpit-rail__item:hover {
+  border-color: rgb(34 211 238 / 0.3);
+  background: rgb(34 211 238 / 0.07);
+  color: var(--launch-copy);
+  transform: translateX(2px);
+}
+
+.cockpit-rail__item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid;
+  border-radius: 0.375rem;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXPERIMENT CARD UPGRADES
+═══════════════════════════════════════════════════════════ */
+
+.experiment-card-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANALYTICS DASHBOARD UPGRADES
+═══════════════════════════════════════════════════════════ */
+
+.metric-tile {
+  display: grid;
+  gap: 0.5rem;
+  min-height: 8rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 0.75rem;
+  background: rgb(2 6 23 / 0.55);
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    transform var(--launch-duration-base) var(--launch-ease);
+}
+
+.metric-tile:hover {
+  transform: translateY(-2px);
+  border-color: rgb(255 255 255 / 0.14);
+}
+
+.metric-tile__top-line {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+}
+
+.metric-tile__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--launch-muted);
+}
+
+.metric-tile__value {
+  font-family: var(--font-mono);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--launch-copy);
+  line-height: 1.2;
+}
+
+.metric-tile__detail {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--launch-subtle);
+}
+
+.chart-shell {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 0.875rem;
+  background: rgb(2 6 23 / 0.6);
+  padding: 1.25rem;
+}
+
+.chart-shell__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--launch-copy);
+}
+
+.chart-shell__desc {
+  font-size: 0.8125rem;
+  color: var(--launch-muted);
+  margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SETTINGS PANEL
+═══════════════════════════════════════════════════════════ */
+
+.settings-toggle {
+  display: flex;
+  min-height: 3rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.625rem;
+  background: rgb(255 255 255 / 0.035);
+  padding-inline: 0.875rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--launch-copy);
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    background var(--launch-duration-base) var(--launch-ease);
+}
+
+.settings-toggle:hover {
+  border-color: rgb(34 211 238 / 0.35);
+  background: rgb(34 211 238 / 0.06);
+}
+
+.settings-toggle[aria-checked="true"] {
+  border-color: rgb(163 230 53 / 0.35);
+  background: rgb(163 230 53 / 0.08);
+  color: rgb(217 249 157);
+}
+
+.settings-toggle__indicator {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.settings-toggle[aria-checked="true"] .settings-toggle__indicator {
+  background: rgb(163 230 53 / 0.2);
+  color: rgb(217 249 157);
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.04);
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--launch-muted);
+  cursor: pointer;
+  transition:
+    border-color var(--launch-duration-base) var(--launch-ease),
+    background var(--launch-duration-base) var(--launch-ease),
+    color var(--launch-duration-base) var(--launch-ease);
+}
+
+.theme-btn:hover {
+  border-color: rgb(255 255 255 / 0.2);
+  color: var(--launch-copy);
+}
+
+.theme-btn[aria-pressed="true"] {
+  border-color: rgb(34 211 238 / 0.45);
+  background: rgb(34 211 238 / 0.1);
+  color: #67e8f9;
+  box-shadow: 0 0 16px rgb(34 211 238 / 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOCUS THEME  (data-app-theme="focus" on <html>)
+═══════════════════════════════════════════════════════════ */
+
+[data-app-theme="focus"] body::before {
+  opacity: 0.4; /* dim ambient orbs */
+}
+
+[data-app-theme="focus"] body::after {
+  opacity: 0.4; /* dim grid */
+}
+
+[data-app-theme="focus"] #main-content {
+  background: rgb(2 6 23 / 0.96);
+}
+
+[data-app-theme="focus"] .surface-spotlight,
+[data-app-theme="focus"] .surface-lane,
+[data-app-theme="focus"] .surface-command {
+  --launch-shadow-cyan: 0 8px 24px rgb(0 0 0 / 0.4);
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(2 6 23 / 0.9);
+  filter: none;
+}
+
+[data-app-theme="focus"] .cockpit-header {
+  border-color: rgb(34 211 238 / 0.3) !important;
+  box-shadow: 0 0 0 1px rgb(34 211 238 / 0.12), 0 20px 60px rgb(34 211 238 / 0.08);
+}
+
+[data-app-theme="focus"] .cockpit-stat {
+  opacity: 0.85;
+}
+
+[data-app-theme="focus"] .motion-glow-pulse,
+[data-app-theme="focus"] .motion-shimmer::after {
+  display: none;
+}
