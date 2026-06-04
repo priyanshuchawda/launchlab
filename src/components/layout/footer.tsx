@@ -1,11 +1,10 @@
 import { Sparkles } from "lucide-react";
-import Link from "next/link";
 
 import { FooterLinks } from "@/components/layout/footer-links";
 
 export function Footer() {
   return (
-    <footer className="footer" role="contentinfo">
+    <footer className="footer">
       <div className="footer__separator" aria-hidden="true" />
       <div className="footer__inner">
         <div className="footer__brand">

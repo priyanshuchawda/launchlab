@@ -1,11 +1,4 @@
-import {
-  ArrowRight,
-  CheckCircle2,
-  FlaskConical,
-  Radio,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import { CheckCircle2, FlaskConical, Radio, Sparkles } from "lucide-react";
 
 import { MetricBeacon } from "@/components/design/premium-surface";
 import { CommandHeader } from "@/components/marketing/command-header";

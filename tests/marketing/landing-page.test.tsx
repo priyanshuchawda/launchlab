@@ -10,7 +10,7 @@ describe("LaunchLab landing page", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /turn one startup goal into a testable landing-page experiment/i,
+        name: /turn one startup goal into a testable experiment/i,
       }),
     ).toBeInTheDocument();
     expect(

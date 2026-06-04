@@ -10,8 +10,10 @@ describe("AppSettingsPanel", () => {
 
     render(<AppSettingsPanel />);
 
-    await user.click(screen.getByRole("button", { name: /focus theme/i }));
-    expect(screen.getByText(/theme preview: focus/i)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: /^focus$/i }));
+    expect(
+      screen.getByText(/focus.*ambient glow reduced/i),
+    ).toBeInTheDocument();
 
     const compactSwitch = screen.getByRole("switch", {
       name: /compact layout/i,
