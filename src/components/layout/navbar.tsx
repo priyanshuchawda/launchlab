@@ -1,7 +1,5 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { NavCta } from "@/components/layout/nav-cta";
@@ -20,11 +18,7 @@ export function Navbar() {
 
   return (
     <header
-      className={[
-        "navbar",
-        scrolled ? "navbar--scrolled" : "",
-      ].join(" ")}
-      role="banner"
+      className={["navbar", scrolled ? "navbar--scrolled" : ""].join(" ")}
     >
       <div className="navbar__inner">
         <NavLogo />

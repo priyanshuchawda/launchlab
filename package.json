@@ -15,6 +15,7 @@
     "validation:gates": "node scripts/validation/run-quality-gates.mjs"
   },
   "dependencies": {
+    "@google/genai": "^2.7.0",
     "@hookform/resolvers": "^5.4.0",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.4",

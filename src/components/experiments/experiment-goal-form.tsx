@@ -28,7 +28,7 @@ const defaultGoal = "Increase signup conversion for my AI notes app";
 export function ExperimentGoalForm({
   onGenerate,
 }: {
-  onGenerate: (goal: string) => void;
+  onGenerate: (goal: string) => Promise<void> | void;
 }) {
   const {
     formState: { errors, isSubmitting },
@@ -41,9 +41,8 @@ export function ExperimentGoalForm({
     resolver: zodResolver(experimentFormSchema),
   });
 
-  const onSubmit: SubmitHandler<ExperimentFormValues> = ({ goal }) => {
+  const onSubmit: SubmitHandler<ExperimentFormValues> = ({ goal }) =>
     onGenerate(goal);
-  };
 
   return (
     <PremiumSurface className="overflow-hidden" variant="spotlight">
@@ -80,7 +79,7 @@ export function ExperimentGoalForm({
               />
               <Button disabled={isSubmitting} type="submit">
                 <Sparkles aria-hidden="true" />
-                Generate experiments
+                {isSubmitting ? "Generating..." : "Generate experiments"}
               </Button>
             </div>
             {errors.goal ? (

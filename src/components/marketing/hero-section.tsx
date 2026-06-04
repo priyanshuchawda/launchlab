@@ -1,9 +1,6 @@
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-
-import { LaunchCommandVisual } from "@/components/marketing/launch-command-visual";
-import { HeroBadge } from "@/components/marketing/hero-badge";
 import { HeroActions } from "@/components/marketing/hero-actions";
+import { HeroBadge } from "@/components/marketing/hero-badge";
+import { LaunchCommandVisual } from "@/components/marketing/launch-command-visual";
 
 export function HeroSection() {
   return (
@@ -45,7 +42,10 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="motion-reveal motion-float" style={{ animationDelay: "200ms" }}>
+      <div
+        className="motion-reveal motion-float"
+        style={{ animationDelay: "200ms" }}
+      >
         <LaunchCommandVisual />
       </div>
     </section>

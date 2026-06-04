@@ -7,8 +7,12 @@ import { ExperimentGoalForm } from "@/components/experiments/experiment-goal-for
 import { FlowProgress } from "@/components/experiments/flow-progress";
 import { generateExperiments } from "@/lib/experiments/generate-experiments";
 import { groupExperimentsByLane } from "@/lib/experiments/group-experiments";
+import { requestAiRecommendations } from "@/lib/experiments/request-ai-recommendations";
 import { useLaunchLabStore } from "@/stores/use-launchlab-store";
 import type { Experiment } from "@/types/experiment";
+
+const fallbackFeedback =
+  "Local recommendations loaded while Gemini is unavailable.";
 
 export function ExperimentGenerator() {
   const [feedback, setFeedback] = useState("");
@@ -32,9 +36,22 @@ export function ExperimentGenerator() {
     experiments.find((experiment) => experiment.id === selectedExperimentId) ??
     null;
   const pipelineLanes = groupExperimentsByLane(experiments);
-  const handleGenerate = (goal: string) => {
-    setGeneratedExperiments(goal, generateExperiments(goal));
+  const handleGenerate = async (goal: string) => {
     setFeedback("");
+
+    try {
+      const result = await requestAiRecommendations(goal);
+
+      setGeneratedExperiments(goal, result.recommendations);
+      setFeedback(
+        result.source === "gemini"
+          ? "Gemini recommended 6 experiments for this goal."
+          : (result.message ?? fallbackFeedback),
+      );
+    } catch {
+      setGeneratedExperiments(goal, generateExperiments(goal));
+      setFeedback(fallbackFeedback);
+    }
   };
 
   const handleCreateVariant = (experiment: Experiment) => {
